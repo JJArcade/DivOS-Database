@@ -1,0 +1,168 @@
+Item Name,Type,Armor Rating,Blocking Chance,Rarity,Value,Level,Requirements,Special 1,Special 2,Special 3,Special 4
+Cloth Cap,Helmet,13,N/A,Common,48,4,N/A,N/A,N/A,N/A,N/A
+Aged Leather Helmet,Helmet,19,N/A,Common,83,7,N/A,N/A,N/A,N/A,N/A
+Blessed Delicate Metal Helmet of the Beholder,Helmet,34,N/A,Rare,1346,12,Str 9,47+ Health,Immunity to Blind,N/A,N/A
+Fine Metal Helmet,Helmet,32,N/A,Common,594,11,Str 8,N/A,N/A,N/A,N/A
+Old Mail Cap of Protection,Helmet,30,N/A,Rare,751,8,Str 7,Immunity to Blind,N/A,N/A,N/A
+Bucket,Helmet,10,N/A,Common,1,1,N/A,0.55- Sight,0.55- Hearing,N/A,N/A
+Bucket,Helmet,10,N/A,Common,1,1,N/A,0.55- Sight,0.55- Hearing,N/A,N/A
+Rounded Scale Armor,Chest,80,N/A,Common,702,13,Str 8,0.6- Movement,N/A,N/A,N/A
+Fortifying Stout Full Plate Armour of Experience,Chest,88,N/A,Rare,1667,11,Str 10,1+ Armour Specialist,0.5- Movement,N/A,N/A
+Aqua Tough Robe of Perception,Chest,58,N/A,Legendary,1683,12,Int 8,1+ Perception,21% Water Resistance,17% Air Resistance,N/A
+Firemans Stout Robe of Air Resistance,Chest,54,N/A,Rare,1143,11,Int 7,16% Fire Resistance,16% Air Resistance,N/A,N/A
+Source Hunters Armour,Chest,20,N/A,Common,40,1,Dex 5,1+ Initiative,N/A,N/A,N/A
+Hard Antique Metal Shield of the Leprechaun,Shield,N/A,20%,Rare,965,9,Str 8,2+ Lucky Charm,0.55- Movement,N/A,N/A
+Firemans Dull Gold Ring of the Contortionist,Accessory,N/A,N/A,Rare,713,8,N/A,1+ Dexterity,14% Fire Resistance,N/A,N/A
+Zandalors Trunks,Waist,N/A,N/A,Unique,2,1,N/A,N/A,N/A,N/A,N/A
+Big Chicken Claw Belt,Waist,N/A,N/A,Common,96,11,N/A,2+ Initiative,N/A,N/A,N/A
+Comfortable Nice Leather Boots of Superstition,Boots,17,N/A,Uncommon,245,6,N/A,1+ Lucky Charm,0.5+ Movement,N/A,N/A
+Blessed Tough Leather Boots of Water Resistance,Boots,27,N/A,Rare,482,11,N/A,16% Water Resistance,54+ HP,N/A,N/A
+Stout Leather Boots,Boots,25,N/A,Common,145,10,N/A,N/A,N/A,N/A,N/A
+Sturdy Leather Boots,Boots,23,N/A,Common,130,9,N/A,N/A,N/A,N/A,N/A
+Stout Mail Chausses,Boots,30,N/A,Common,278,11,Str 7,N/A,N/A,N/A,N/A
+Terra Sturdy Mail Chausses of Superstition,Boots,28,N/A,Rare,563,10,Str 7,15% Earth Resistance,1+ Lucky Charm,N/A,N/A
+Workers Cloth Bracers of Initiative,Gloves,11,N/A,Uncommon,140,3,N/A,1+ Blacksmithing,2+ Intiative,N/A,N/A
+Robust Leather Bracers,Gloves,21,N/A,Common,139,8,N/A,N/A,N/A,N/A,N/A
+Sturdy Leather Bracers,Gloves,25,N/A,Common,174,10,N/A,N/A,N/A,N/A,N/A
+Sturdy Metal Bracers,Gloves,28,N/A,Common,438,10,Str 7,N/A,N/A,N/A,N/A
+Defensive Strong Mail Bracers of Crafting,Gloves,36,N/A,Rare,702,9,Str 7,1+ Crafting,N/A,N/A,N/A
+Stout Metal Bracers,Gloves,30,N/A,Common,482,11,Str 7,N/A,N/A,N/A,N/A
+Burning Copper Amulet of the Firebrand,Amulet,N/A,N/A,Legendary,1834,11,N/A,1+ Bartering,Fire Absorption Shield,Reflects 15% of any damage as Fire Damage,N/A
+Fortifying Fine Metal Helmet of the Master,Helmet,42,N/A,Rare,981,11,Str 8,1+ Leadership,N/A,N/A,N/A
+Nimble Robust Leather Bracers of Telekinesis,Gloves,21,N/A,Rare,370,8,N/A,1+ Dexterity,1+ Telekinesis,N/A,N/A
+Durable Hard Mail Armour of Vigilance,Chest,62,N/A,Epic,976,7,Str 7,1+ Armour Specialist,0.35- Movement,N/A,N/A
+Charismatic Corroded Copper Amulet of the Warrior,Amulet,N/A,N/A,Uncommon,324,5,N/A,1+ Strength,1+ Charisma,N/A,N/A
+Aural Tought Sarong of Vitality,Undergarment,N/A,N/A,Rare,394,7,N/A,13% Air Resistance,30+ HP,N/A,N/A
+Light Corroded Copper Ring of the Loremaster,Accessory,N/A,N/A,Uncommon,162,2,N/A,1+ Loremaster,0.25+ Movement,N/A,N/A
+Tool Filled Sash of Initiative,Waist,N/A,N/A,Uncommon,251,7,N/A,1+ Blacksmithing,2+ Initiative,N/A,N/A
+Firemans Antique Ring of the Serpent,Accessory,N/A,N/A,Epic,680,6,N/A,1+ Dexterity,12% Fire Resistance,12% Poison Resistance,N/A
+Snow Boots,Boots,23,N/A,Common,149,11,N/A,Immunity to Slipping,N/A,N/A,N/A
+Blessed Delicate Metal Helmet of the Master,Helmet,34,N/A,Rare,1196,12,Str 9,1+ Leadership,47+ HP,N/A,N/A
+Lazy Hard Leather Bracers of Protection,Gloves,23,N/A,Uncommon,268,7,N/A,1+ Telekinesis,N/A,N/A,N/A
+Orc Armour,Chest,62,N/A,Unique,1620,6,Str 8,1+ Strength,0.4+ Movement,20+ HP,"5% Feared, 1 Turn"
+Freezing Heavy Copper Amulet of the Sage,Amulet,N/A,N/A,Rare,1148,8,N/A,1+ Intelligence,Water Absorption Shield,N/A,N/A
+Antidote Sturdy Sarong of Fire Resistance,Undergarment,N/A,N/A,Rare,853,10,N/A,13% Fire Resistance,15% Poison Resistance,N/A,N/A
+Antidote Old Copper Ring of the Runner,Accessory,N/A,N/A,Uncommon,244,3,N/A,8% Poison Resistance,0.3+ Movement,N/A,N/A
+Skull Belt,Waist,N/A,N/A,Common,96,11,N/A,1+ Intelligence,N/A,N/A,N/A
+Barbaric Corroded Copper Ring of the Runner,Accessory,N/A,N/A,Uncommon,162,2,N/A,1+ Strength,0.25+ Movement,N/A,N/A
+Snow Boots,Boots,23,N/A,Common,149,11,N/A,Immunity to Slipping,N/A,N/A,N/A
+Leaders New Cloth Cap of Perception,Helmet,15,N/A,Uncommon,184,5,N/A,1+ Perception,1+ Leadership,N/A,N/A
+New Cloth Cap,Helmet,15,N/A,Common,59,5,N/A,N/A,N/A,N/A,N/A
+Fortifying Outmoded Leather Cap of the Master,Helmet,33,N/A,Epic,670,9,N/A,1+ Leadership,23+ HP,N/A,N/A
+Leather Cap,Helmet,27,N/A,Common,130,11,N/A,N/A,N/A,N/A,N/A
+Antique Metal Helmet,Helmet,30,N/A,Common,523,10,Str 8,N/A,N/A,N/A,N/A
+Blessed Outdated metal Helmet of Initiative,Helmet,22,N/A,Rare,604,6,Str 6,2+ Initiative,26+ HP,N/A,N/A
+Delicate Metal Helmet,Helmet,34,N/A,Common,648,12,Str 9,N/A,N/A,N/A,N/A
+Firemans Tough Gambeson of Air Resistance,Chest,50,N/A,Rare,673,12,N/A,17% Fire Resistance,17% Air Resistance,1+ Initiative,N/A
+Blessed Hard Leather Armour of the Runner,Chest,44,N/A,Uncommon,526,7,Dex 6,1+ Initiative,0.55+ Movement,30+ HP,N/A
+Leather Ring Armour,Chest,52,N/A,Common,338,9,Dex 7,1+ Initiative,N/A,N/A,N/A
+Tough Scale Armour,Chest,76,N/A,Common,648,12,Str 8,0.55- Movement,N/A,N/A,N/A
+Laced Scale Armour,Chest,72,N/A,Common,594,11,Str 8,0.5- Movement,N/A,N/A,N/A
+Sturdy Scale Armour,Chest,68,N/A,Common,540,10,Str 8,0.5- Movement,N/A,N/A,N/A
+Sturdy Full Plate Armour,Chest,78,N/A,Common,735,10,Str 10,0.5- Movement,N/A,N/A,N/A
+Strong Robe,Chest,46,N/A,Common,607,9,Int 7,N/A,N/A,N/A,N/A
+Padded Robe,Chest,42,N/A,Common,539,8,Int 6,N/A,N/A,N/A,N/A
+Stout Robe,Chest,54,N/A,Common,741,11,Int 7,N/A,N/A,N/A,N/A
+Wonderful Robe,Chest,70,N/A,Common,1011,15,Int 8,N/A,N/A,N/A,N/A
+Source Hunter Cloth Armour,Chest,6,N/A,Common,5,1,N/A,1+ Initiative,"100% Blinded, 1 Turn",N/A,N/A
+Aqua Antique Metal Shield of Hindrance,Shield,N/A,18%,Rare,752,9,Str 8,18% Water Resistance,0.55- Movement,N/A,N/A
+Light Fine Silver Ring of the Skeleton Key,Accessory,N/A,N/A,Rare,981,11,N/A,1+ Lockpicking,0.7+ Movement,N/A,N/A
+Antidote Iron Belt of Tools,Waist,N/A,N/A,Rare,471,12,N/A,17% Poison Resistance,1+ Blacksmithing,N/A,N/A
+Blessed Torn Sash of Lock Picks,Waist,N/A,N/A,Rare,292,6,N/A,1+ Lockpicking,26+ HP,N/A,N/A
+Smelly Panties,Waist,N/A,N/A,Unique,4,1,N/A,1+ Charisma,N/A,N/A,N/A
+Worn Cloth Boots,Boots,13,N/A,Common,58,4,N/A,N/A,N/A,N/A,N/A
+Aqua Thick Leather Boots of Air Resistance,Boots,19,N/A,Rare,320,7,N/A,13% Water Resistance,11% Air Resistance,N/A,N/A
+Nice Leather Boots,Boots,17,N/A,Common,87,6,N/A,N/A,N/A,N/A,N/A
+Firemans Tough Leather Boots of Air Resistance,Boots,27,N/A,Epic,548,11,N/A,16% Fire Resistance,16% Air Resistance,N/A,N/A
+Leaders Padded Leather Boots of Mobility,Boots,21,N/A,Epic,570,8,N/A,12% Air Resistance,2+ Initiative,Immunity to Crippled,N/A
+Padded Leather Boots,Boots,21,N/A,Common,116,8,N/A,N/A,N/A,N/A,N/A
+Tough Leather Boots,Boots,27,N/A,Common,159,11,N/A,N/A,N/A,N/A,N/A
+Tough Leather Boots,Boots,27,N/A,Common,159,11,N/A,N/A,N/A,N/A,N/A
+Sturdy Mail Chausses,Boots,28,N/A,Common,28,10,Str 7,N/A,N/A,N/A,N/A
+Nice Leather Bracers,Gloves,17,N/A,Common,105,6,N/A,N/A,N/A,N/A,N/A
+Sturdy Leather Bracers,Gloves,25,N/A,Common,174,10,N/A,N/A,N/A,N/A,N/A
+Stout Leather Bracers,Gloves,27,N/A,Common,191,11,N/A,N/A,N/A,N/A,N/A
+Fortifying Robust Mail Bracers of Vitality,Gloves,30,N/A,Rare,686,8,Str 6,33+ HP,N/A,N/A,N/A
+Sturdy Metal Bracers,Gloves,28,N/A,Common,438,10,Str 7,N/A,N/A,N/A,N/A
+Orc Helmet,Helmet,17,N/A,Unique,882,6,Str 6,1+ Perception,2.4+ Sight,1+ Initiative,N/A
+Stout Leather Bracers,Gloves,27,N/A,Common,191,11,N/A,N/A,N/A,N/A,N/A
+Thick Sturdy Scale Armour of Vitality,Chest,68,N/A,Rare,1122,10,Str 8,0.5- Movement,40+ HP,Immunity to Bleeding,N/A
+Enlightened Amulet,Amulet,N/A,N/A,Common,588,8,N/A,1+ Strength,50+ HP,N/A,N/A
+Bairdotrs Garment,Undergarment,N/A,N/A,Unique,102,1,N/A,N/A,N/A,N/A,N/A
+Firemans Dull Gold Ring of the Loremaster,Accessory,N/A,N/A,Uncommon,648,8,N/A,12% Fire Resistance,1+ Loremaster,N/A,N/A
+Antidote Sash of Tools,Waist,N/A,N/A,Uncommon,251,7,N/A,11% Poison Resistance,1+ Blacksmithing,N/A,N/A
+Insulated Worn gold Ring of Telekinesis,Accessory,N/A,N/A,Rare,1309,13,N/A,1+ Telekinesis,Immunity to Stunned,N/A,N/A
+Snow Boots,Boots,23,N/A,Common,149,11,N/A,Immunity to Slipping,N/A,N/A,N/A
+Old Cloth Cap,Helmet,7,N/A,Common,12,1,N/A,N/A,N/A,N/A,N/A
+Aged Cloth Cap,Helmet,9,N/A,Common,24,2,N/A,N/A,N/A,N/A,N/A
+Fortifying Aged Cloth Cap of the Master,Helmet,15,N/A,Rare,79,2,N/A,1+ Leadership,N/A,N/A,N/A
+Leaders Cloth Cap of Everlasting,Helmet,13,N/A,Uncommon,156,4,N/A,2+ Initiative,N/A,N/A,N/A
+New Cloth Cap,Helmet,15,N/A,Common,59,5,N/A,N/A,N/A,N/A,N/A
+Aged Leather Cap,Helmet,19,N/A,Common,83,7,N/A,N/A,N/A,N/A,N/A
+Antique Metal Helmet,Helmet,30,N/A,Common,540,10,Str 8,N/A,N/A,N/A,N/A
+Covering Fine Metal Helmet of the Lumberjack,Helmet,38,N/A,Epic,1439,11,Str 8,1+ Constitution,2+ Initiative,N/A,N/A
+Bairdotrs Armour,Chest,28,N/A,Unique,226,3,Str 5,1+ Initiative,N/A,N/A,N/A
+Terra stout Gambeson of Long Distances,Chest,46,N/A,Rare,618,11,N/A,16% Earth Resistance,1+ Initiative,0.8+ Movement,N/A
+Terra Stout Gambeson of Water Resistance,Chest,46,N/A,Rare,618,11,N/A,16% Water Resistance,20% Earth Resistance,1+ Initiative,N/A
+Terra Sturdy Scale Armour of Vitality,Chest,42,N/A,Rare,677,10,N/A,19% Earth Resistance,1+ Initiative,40+ HP,N/A
+Blessed Delicate Leather Armour of the Runner,Chest,32,N/A,Uncommon,300,4,Dex 5,1+ Initiative,0.35+ Movement,20+ HP,N/A
+Firemans Elegant Leather Armour of Vitality,Chest,36,N/A,Uncommon,376,5,Dex 5,9% Fire Resistance,1+ Initiative,14+ HP,N/A
+Nice Armour,Chest,40,N/A,Common,225,6,Dex 6,1+ Initiative,N/A,N/A,N/A
+Aqua Aged Leather Ring Armour of Air Resistance,Chest,48,N/A,Rare,534,8,Dex 6,14% Water Resistance,12% Air Resistance,1+ Initiative,N/A
+Elegant Mail Armour,Chest,48,N/A,Common,270,5,Str 6,0.3- Movement,N/A,N/A,N/A
+Terra Delicate Robe of the Runner,Chest,26,N/A,Uncommon,378,4,Int 5,9% Earth Resistance,0.35+ Movement,N/A,N/A
+Light Nice Robe of Vitality,Chest,34,N/A,Uncommon,630,6,Int 6,0.4+ Movement,16+ HP,N/A,N/A
+Stout Robe,Chest,54,N/A,Common,741,11,Int 7,N/A,N/A,N/A,N/A
+Old Buckler,Shield,N/A,10%,Common,203,3,Str 5,0.3- Movement,N/A,N/A,N/A
+Anointed Old Copper Ring of the Serpent,Accessory,N/A,N/A,Uncommon,316,3,N/A,1+ Intelligence,8% Poison Resistance,N/A,N/A
+Bairdotrs Boots,Boots,11,N/A,Unique,88,3,N/A,N/A,N/A,N/A,N/A
+Comfortable Nice Leather Boots of Life,Boots,17,N/A,Uncommon,204,6,N/A,0.5+ Movement,13+ HP,N/A,N/A
+Stout Leather Boots,Boots,25,N/A,Common,145,10,N/A,N/A,N/A,N/A,N/A
+Sturdy Leather Boots,Boots,23,N/A,Common,130,9,N/A,N/A,N/A,N/A,N/A
+Superior Leather Boots,Boots,35,N/A,Common,217,15,N/A,N/A,N/A,N/A,N/A
+Covering Solid Metal Chausses of Life,Boots,40,N/A,Rare,667,13,Str 8,63+ HP,N/A,N/A,N/A
+Hard Leather Bracers,Gloves,19,N/A,Common,122,7,N/A,N/A,N/A,N/A,N/A
+Soldiers Hard Leather Bracers of the Handyman,Gloves,19,N/A,Epic,568,7,N/A,1+ Single-handed,1+ Blacksmithing,2+ Initiative,N/A
+Strong Mail Bracers,Gloves,26,N/A,Common,383,9,Str 7,N/A,N/A,N/A,N/A
+Outdated Metal Helmet,Helmet,22,N/A,Common,324,6,Str 6,N/A,N/A,N/A,N/A
+Defensive Sturdy Leather Bracers of Spirit,Gloves,35,N/A,Rare,414,10,N/A,2+ Initiative,N/A,N/A,N/A
+Leather Brigandine,Chest,60,N/A,Common,400,11,Dex 7,1+ Initiative,N/A,N/A,N/A
+Enlightened Amulet,Amulet,N/A,N/A,Common,588,8,N/A,1+ Strength,50+ HP,N/A,N/A
+Source Hunter Sarong,Undergarment,N/A,N/A,Common,2,1,N/A,N/A,N/A,N/A,N/A
+Graceful Metal Shield of Earth,Shield,N/A,16%,Rare,848,8,Str 7,18% Earth Resistance,0.1+ Movement,N/A,N/A
+Robust Old Gold Ring of the Contortionist,Accessory,N/A,N/A,Epic,1282,9,N/A,1+ Dexterity,1+ Constitution,1+ Telekinesis,N/A
+Antidote Spiked Belt of Lock Picks,Waist,N/A,N/A,Rare,433,11,N/A,14% Poison Resistance,1+ Lockpicking,N/A,N/A
+Firemans Old Copper Ring of Perception,Accessory,N/A,N/A,Uncommon,244,3,N/A,1+ Perception,8% Fire Resistance,N/A,N/A
+Snow Boots,Boots,23,N/A,Common,149,11,N/A,Immunity to Slipping,N/A,N/A,N/A
+Good Cloth Cap,Helmet,17,N/A,Common,71,6,N/A,N/A,N/A,N/A,N/A
+Covering Cloth Cap of Everlasting,Helmet,17,N/A,Uncommon,132,4,N/A,N/A,N/A,N/A,N/A
+Covering Thin Leather Cap of the Master,Helmet,31,N/A,Rare,381,10,N/A,1+ Leadership,N/A,N/A,N/A
+Leather Cap,Helmet,27,N/A,Common,130,11,N/A,N/A,N/A,N/A,N/A
+Antique Metal Helmet,Helmet,30,N/A,Common,540,10,Str 8,N/A,N/A,N/A,N/A
+Nice Armour,Chest,40,N/A,Common,209,6,Dex 6,1+ Initiative,N/A,N/A,N/A
+Aged Leather Brigandine,Chest,56,N/A,Common,375,10,Dex 7,1+ Initiative,N/A,N/A,N/A
+Firemans Nice Metal Armour of Earth Resistance,Chest,62,N/A,Rare,663,6,Str 8,12% Fire Resistance,10% Earth Resistance,0.3- Movement,N/A
+Hard Metal Armour,Chest,66,N/A,Common,515,7,Str 8,0.35- Movement,N/A,N/A,N/A
+Antique Plate Armour,Chest,46,N/A,Common,147,2,Str 5,0.15- Movement,N/A,N/A,N/A
+Antique Plate Armour,Chest,46,N/A,Common,147,2,Str 5,0.15- Movement,N/A,N/A,N/A
+Elegant Metal Armour,Chest,58,N/A,Common,368,5,Str 7,0.3- Movement,N/A,N/A,N/A
+Wolgraffs Armour,Chest,28,N/A,Common,226,3,Str 4,1+ Initiative,N/A,N/A,N/A
+Source Hunter Sarong,Undergarment,N/A,N/A,Common,2,1,N/A,N/A,N/A,N/A,N/A
+Old Buckler,Shield,N/A,9%,Common,162,3,Str 5,0.3- Movement,N/A,N/A,N/A
+Old Buckler,Shield,N/A,9%,Common,162,3,Str 5,0.3- Movement,N/A,N/A,N/A
+Antidote Corroded Gold Ring of Telekinesis,Accessory,N/A,N/A,Uncommon,568,7,N/A,11% Poison Resistance,1+ Telekinesis,N/A,N/A
+Sparkling Fine Silver Ring of the Runner,Accessory,N/A,N/A,Rare,1108,11,N/A,0.7+ Movement,Blitz Bolt,N/A,N/A
+Cloth Boots,Boots,15,N/A,Common,73,4,N/A,N/A,N/A,N/A,N/A
+Blessed Nice Leather Boots of Superstiton,Boots,17,N/A,Uncommon,220,6,N/A,N/A,N/A,N/A,N/A
+Nice Leather Boots,Boots,17,N/A,Common,87,6,N/A,N/A,N/A,N/A,N/A
+Padded Leather Boots,Boots,21,N/A,Common,116,8,N/A,N/A,N/A,N/A,N/A
+Sturdy Leather Boots,Boots,23,N/A,Common,130,9,N/A,N/A,N/A,N/A,N/A
+Sturdy Leather Boots,Boots,23,N/A,Common,130,9,N/A,N/A,N/A,N/A,N/A
+Sturdy Mail Chausses,Boots,28,N/A,Common,245,10,Str 7,N/A,N/A,N/A,N/A
+Wolgraffs Boots,Boots,11,N/A,Common,88,3,N/A,N/A,N/A,N/A,N/A
+Lazy Cloth Bracers of the Skeleton Key,Gloves,11,N/A,Uncommon,135,3,N/A,1+ Telekinesis,1+ Lockpicking,N/A,N/A
+Lazy Nice Leather Bracers of the Skeleton Key,Gloves,17,N/A,Uncommon,256,6,N/A,1+ Telekinesis,1+ Lockpicking,N/A,N/A
+Tough Leather Bracers,Gloves,29,N/A,Common,209,12,N/A,N/A,N/A,N/A,N/A
+Sturdy Metal Bracers,Gloves,28,N/A,Common,438,10,Str 7,N/A,N/A,N/A,N/A
+Wolgraffs Bracers,Gloves,11,N/A,Unique,106,3,N/A,N/A,N/A,N/A,N/A
+Blazing Copper Amulet of Air Resistance,Amulet,N/A,N/A,Rare,1148,10,N/A,13% Air Resistance,Reflect 20% of melee damage as fire,N/A,N/A
