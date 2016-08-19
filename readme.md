@@ -6,7 +6,8 @@ This is a python project I started as a way to view and sort my equipable items 
 ###Key Features:
 #####Displaying all your characters' info.
 - example of character info display:
-'''
+
+```
 --------------------------------------------------------------
 Wolgraff Attributes                    Abilities              Equipment
          Level                    12   Bow               0    Helmet: Item Name
@@ -38,7 +39,8 @@ Wolgraff Attributes                    Abilities              Equipment
                                        Lockpicking       2
                                        Pickpocketing     2
 --------------------------------------------------------------
-'''
+```
+
 - The informationg displayed should be familiar to anyone who's played **Divinity Original Sin**. The main interface of the program will display all character's inforamtion entered into your Attributes and Abilities CSV files here.
 - Currently the program only supports the first 4 characters. It should be able to handle more fine but I've been testing it with my main party so I haven't tested the program with more than 4 characters at once. I'm not sure how many, if any, bugs would pop up from adding more.
 - That being said it should be easy to fix and I will probably update it soon to allow a higher maximum characters displayed at once.
@@ -71,10 +73,10 @@ Wolgraff Attributes                    Abilities              Equipment
 - You can view the full details of a single character's equipment, view all items currently in use by characters or view your inventory item in a table format.
 - The table format will launch an interface just for viewing your inventory.
   - You must select whether you want to view your armor or weapons database.
-   - Unfortunately I felt it would be too complicated to try and sort and display both the databases at once.
-   - You may also notice the last for rows of data aren't in alignment. The special attributes of items can often be long and cause lines to continue to the next row breaking up the orgintization of the table. I opted to leave it unforamtted to save space since they are the least uniform data from item to item.
+    - Unfortunately I felt it would be too complicated to try and sort and display both the databases at once.
+    - You may also notice the last for rows of data aren't in alignment. The special attributes of items can often be long and cause lines to continue to the next row breaking up the orgintization of the table. I opted to leave it unforamtted to save space since they are the least uniform data from item to item.
   - From there you can sort by any of the columns of the data base and chose to try and equip an item to a character.
-   - I say try since the program does check a character's attributes and the requirements of an item before *equipping* it to a character. If the item's requirements are too high it won't be equipped.
+    - I say try since the program does check a character's attributes and the requirements of an item before *equipping* it to a character. If the item's requirements are too high it won't be equipped.
   - You can also choose when you want to exit and go back to the main character info.
 
 #####Inventory Searching
@@ -97,15 +99,15 @@ Wolgraff Attributes                    Abilities              Equipment
   - If you aren't familiar with CSV formatting just open the Excel spreadsheet provided and overwrite the information there with your own. 
   - The biggest things to remember are **Keep the formatting of the cells as similar to mine as possible** to avoid any errors on reading the data. 
   - **_Apostrophe_**'s are a big No-go for the item names. 
-   - Python can't print them out and you'll get errors when it tries to display them, so avoid at all costs. 
+    - Python can't print them out and you'll get errors when it tries to display them, so avoid at all costs. 
   - **USE "N/A" WHEN THERE IS NO VALUE FOR AN ITEM IN A PARTICULAR CATERGORY!**
-   - The program looks for "N/A" (in caps too) to know that an item has no value there and adjusts accordingly during calculations
+    - The program looks for "N/A" (in caps too) to know that an item has no value there and adjusts accordingly during calculations
   - Keep capitilizations in the item **Type** catergory.
-   - Several functions in the program search for exact matches of item types so Capitilization and spelling count.
+    - Several functions in the program search for exact matches of item types so Capitilization and spelling count.
   - Another thing to look out for is Excel trying to convert the damage values to a date format.
-   - The program specifically looks for the "-" to get the high and low damage values of a weapon.
+    - The program specifically looks for the "-" to get the high and low damage values of a weapon.
   - For special buffs always start with the number value and then a *+/-* to signify if it adds or subtracts from a character's value.
-   - ie "1+ Shield Specialist" "11% Poison Resistance" or "0.5- Movement"
+    - ie "1+ Shield Specialist" "11% Poison Resistance" or "0.5- Movement"
 - The simplest way to enter your inventory would be to add your items to the already filled out spreadsheet and let the spreadsheet program you use autofill when applicable and use those entries (ie Damage types, Armor Types, Special Buffs etc.)
 - Once you have as many of your items in as you want, delete my inventory and leave only your items.
 - Once you've done that for **Armor**, **Weapons**, **Character Attributes**, and **Character Abilities** you can save each sheet as a **.CSV** file and place it in the folder of the program.
