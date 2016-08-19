@@ -2294,12 +2294,14 @@ def interface():
 				print('2: View and select from set descriptions/values')
 				if number_select(2)==1:
 					char_armors=armor_max_def(char_choice)
-					equip_armors(char_armors, 2, char_choice)
+					if len(char_armors)!=0:
+						equip_armors(char_armors, 2, char_choice)
 				else:
 					print("Would you like to filter out conflict sets?")
 					if 'y'==yes_or_no():
 						char_armors=armor_max_def(char_choice)
 						new_armors=remove_armor_conflicts(char_armors, 2)
+						print("New number of combinations is: "+str(len(new_armors)))
 						set_choice=select_armor_sets(new_armors, 2)
 						if set_choice is not None:
 							print(set_choice)
@@ -2326,12 +2328,14 @@ def interface():
 				print('2: View and select from set descriptions/values')
 				if number_select(2)==1:
 					char_armors=armor_max_open(char_choice)
-					equip_armors(char_armors, 2, char_choice)
+					if len(char_armors)!=0:
+						equip_armors(char_armors, 2, char_choice)
 				else:
 					print("Would you like to filter out conflict sets?")
 					if 'y'==yes_or_no():
 						char_armors=armor_max_open(char_choice)
 						new_armors=remove_armor_conflicts(char_armors, 2)
+						print("New number of combinations is: "+str(len(new_armors)))
 						set_choice=select_armor_sets(new_armors, 2)
 						if set_choice is not None:
 							print(set_choice)
@@ -2358,12 +2362,14 @@ def interface():
 				print('2: View and select from set descriptions/values')
 				if number_select(2)==1:
 					char_armors=armor_max_filtered(char_choice)
-					equip_armors(char_armors, 2, char_choice)
+					if len(char_armors)!=0:
+						equip_armors(char_armors, 2, char_choice)
 				else:
 					print("Would you like to filter out conflict sets?")
 					if 'y'==yes_or_no():
 						char_armors=armor_max_filtered(char_choice)
 						new_armors=remove_armor_conflicts(char_armors, 2)
+						print("New number of combinations is: "+str(len(new_armors)))
 						set_choice=select_armor_sets(new_armors, 2)
 						if set_choice is not None:
 							print(set_choice)
@@ -2730,13 +2736,14 @@ def interface():
 							if equip_slot!=6 and equip_slot!=7:
 									armor_set.append(j)
 							else:
-								if loaded_equipment[a-1][6]==loaded_equipment[a-1][7] and int(loaded_equipment[a-1][6])!=0:
-									weapon_set.append(int(loaded_equipment[a-1][6]))
-								elif j==7 and loaded_equipment[a-1][len(loaded_equipment[a-1])-1]=='shield':
+								if loaded_equipment[a-1][7]==loaded_equipment[a-1][8] and int(loaded_equipment[a-1][7])!=0:
+									if int(loaded_equipment[a-1][7]) not in weapon_set:
+										weapon_set.append(int(loaded_equipment[a-1][7]))
+								elif equip_slot==7 and loaded_equipment[a-1][len(loaded_equipment[a-1])-1]=='shield':
 									armor_set.append(j)
-								elif j==7:
+								elif equip_slot==7:
 									weapon_set.append(j)
-								elif j==6:
+								elif equip_slot==6:
 									weapon_set.append(j)
 						armor_set=armor_equip_order(armor_set,i)
 						for c in armor_set:
@@ -2756,28 +2763,44 @@ def interface():
 #
 #print formatted view of armor list and return a choice
 def select_armor_sets(combos, combo_start):
-	if len(combos)<3:
-		print_end=len(combos)
-	else:
-		print_end=3
-	print_start=0
-	total_combo_items=[]
-	set_chosen=False
-	set_count=1
-	while not set_chosen:
-		if print_end>=len(combos):
-			set_chosen=True
-		for a in range(print_start, print_end):
-			curr_set=combos[a]
-			if type(curr_set[0])!=list:
-				main_set=[curr_set[0]]
-			else:
-				main_set=curr_set[0]
-			if len(curr_set)>combo_start:	#SET HAD ACCESORY COMBOS
-				for b in range(combo_start, len(curr_set)):
+	if len(combos)!=0:
+		if len(combos)<3:
+			print_end=len(combos)
+		else:
+			print_end=3
+		print_start=0
+		total_combo_items=[]
+		set_chosen=False
+		set_count=1
+		while not set_chosen:
+			if print_end>=len(combos):
+				set_chosen=True
+			for a in range(print_start, print_end):
+				curr_set=combos[a]
+				if type(curr_set[0])!=list:
+					main_set=[curr_set[0]]
+				else:
+					main_set=curr_set[0]
+				if len(curr_set)>combo_start:	#SET HAD ACCESORY COMBOS
+					for b in range(combo_start, len(curr_set)):
+						total_specials=[]
+						appended_set=main_set+curr_set[b]
+						for c in appended_set:
+							i=find_specials(c, 'armor')
+							if len(total_specials)==0:
+								total_specials=i
+							else:
+								##ADD TO TOTAL SPECIAL VALUES
+								for d in range(0,len(i)):
+									for e in range(0,len(i[d])):
+										total_specials[d][e]+=i[d][e]
+						print(str(set_count)+':')
+						print_set(appended_set, total_specials)
+						total_combo_items.append(appended_set)
+						set_count+=1
+				else:
 					total_specials=[]
-					appended_set=main_set+curr_set[b]
-					for c in appended_set:
+					for c in main_set:
 						i=find_specials(c, 'armor')
 						if len(total_specials)==0:
 							total_specials=i
@@ -2787,39 +2810,26 @@ def select_armor_sets(combos, combo_start):
 								for e in range(0,len(i[d])):
 									total_specials[d][e]+=i[d][e]
 					print(str(set_count)+':')
-					print_set(appended_set, total_specials)
-					total_combo_items.append(appended_set)
+					print_set(main_set, total_specials)
+					total_combo_items.append(main_set)
 					set_count+=1
+			print("Would you like to equip one of the above sets?")
+			if 'y'==yes_or_no():
+				print("Enter the armor set you want to equip.")
+				set_picked=number_select(set_count-1)
+				set_chosen=True
+				return total_combo_items[set_picked-1]
 			else:
-				total_specials=[]
-				for c in main_set:
-					i=find_specials(c, 'armor')
-					if len(total_specials)==0:
-						total_specials=i
-					else:
-						##ADD TO TOTAL SPECIAL VALUES
-						for d in range(0,len(i)):
-							for e in range(0,len(i[d])):
-								total_specials[d][e]+=i[d][e]
-				print(str(set_count)+':')
-				print_set(main_set, total_specials)
-				total_combo_items.append(main_set)
-				set_count+=1
-		print("Would you like to equip one of the above sets?")
-		if 'y'==yes_or_no():
-			print("Enter the armor set you want to equip.")
-			set_picked=number_select(set_count-1)
-			set_chosen=True
-			return total_combo_items[set_picked-1]
-		else:
-			if (print_start+3)<=(len(combos)-3):
-				print_start+=3
-			else:
-				print_start=len(combos)-3
-			if (print_end+3)<=len(combos):
-				print_end+=3
-			else:
-				print_end=len(combos)
+				if (print_start+3)<=(len(combos)-3):
+					print_start+=3
+				else:
+					print_start=len(combos)-3
+				if (print_end+3)<=len(combos):
+					print_end+=3
+				else:
+					print_end=len(combos)
+	else:
+		print("There are no combinations to choose from!")
 				
 #					
 #print armor sets provided in formatted style
@@ -3920,7 +3930,7 @@ class player:
 					temp_specials=find_specials(self.equipped[x], 'armor')
 					#print(armor[self.equipped[x]][0])
 				else:
-					if self.equipped[6]==self.equipped[7] and self.equipped[6]!=0:
+					if self.equipped[6]==self.equipped[7] and self.equipped[6]!=0 and not self.has_shield:
 						if not two_handed_done:
 							temp_specials=find_specials(self.equipped[6], 'weapon')
 							#print(weapons[self.equipped[x]][0])
@@ -3961,6 +3971,9 @@ class player:
 		self.ratings[3]=0
 		if self.equipped[6]!=0 or (self.equipped[7]!=0 and not self.has_shield):
 			phys_types=['Piercing', 'Slashing', 'Crushing']
+			##PLACEHOLDER SOLUTION UNTIL ELEMENTAL DAMAGE SOLUTIONS ARE ADDED
+			dmg_lo=0
+			dmg_hi=0
 			#store name and damage values
 			#dmg value = dmg weapons + single/two handed or crossbow/bow buff + special buffs
 			if self.equipped[6]==self.equipped[7] and not self.has_shield:	#ITEM IS TWO HANDED
@@ -4082,6 +4095,9 @@ class player:
 						#add buff
 						dmg_hi=dmg_hi*(1+(.1*onehand_pts))
 						dmg_lo=dmg_lo*(1+(.1*onehand_pts))
+					else:	#Weapon is elemental damage
+						dmg_lo=0
+						dmg_hi=0
 				elif self.equipped[7]!=0 and not self.has_shield:
 					weap1=self.equipped[7]
 					weap1_type=weapons[weap1][1]
@@ -4097,6 +4113,9 @@ class player:
 						#add buff
 						dmg_hi=dmg_hi*(1+(.1*onehand_pts))
 						dmg_lo=dmg_lo*(1+(.1*onehand_pts))
+					else:	#Weapon is elemental damage
+						dmg_lo=0
+						dmg_hi=0
 			#ROUND VALUES, CHANGE DAMAGE RATING
 			dmg_lo=round(dmg_lo, 3)
 			dmg_hi=round(dmg_hi, 3)
@@ -4146,17 +4165,34 @@ class player:
 					blocking_per=round(blocking_per*100,2)
 					self.ratings[2]=blocking_per
 	#Critical Chance Calculations
+		##Perception values added
 		if int(self.attr[7])>5:
 			perc_val=int(self.attr[7])
 			crit_chn=(perc_val-5)*.01
 		else:
 			crit_chn=0
-		##Here is where the buff functions would go
-		##to add more to the critical chance value
 		if crit_chance_added:
 			self.ratings[3]+=round(crit_chn*100, 3)
 		else:
 			self.ratings[3]=round(crit_chn*100, 3)
+		##Add critical chance value from weapon
+		if self.equipped[6]!=0 or (self.equipped[7]!=0 and not self.has_shield):
+			if self.equipped[6]==self.equipped[7] and not self.has_shield:
+				weap_crit_chn=weapons[self.equipped[6]][4]
+				if bool(re.search('[0-9]+',weap_crit_chn)):
+					weap_crit_chn=int(weap_crit_chn[0:len(weap_crit_chn)-1])
+					self.ratings[3]+=weap_crit_chn
+			else:
+				if self.equipped[6]!=0:
+					weap_crit_chn=weapons[self.equipped[6]][4]
+					if bool(re.search('[0-9]+',weap_crit_chn)):
+						weap_crit_chn=int(weap_crit_chn[0:len(weap_crit_chn)-1])
+						self.ratings[3]+=weap_crit_chn
+				if self.equipped[7]!=0 and not self.has_shield:
+					weap_crit_chn=weapons[self.equipped[7]][4]
+					if bool(re.search('[0-9]+',weap_crit_chn)):
+						weap_crit_chn=int(weap_crit_chn[0:len(weap_crit_chn)-1])
+						self.ratings[3]+=weap_crit_chn
 	#Offense rating calculations
 		'''off_rating=0
 		two_handed=bool(self.equipped[6]==self.equipped[7] and self.equipped[6]!=0)
