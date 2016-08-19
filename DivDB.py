@@ -2301,19 +2301,25 @@ def interface():
 						char_armors=armor_max_def(char_choice)
 						new_armors=remove_armor_conflicts(char_armors, 2)
 						set_choice=select_armor_sets(new_armors, 2)
-						print(set_choice)
-						set_choice=armor_equip_order(set_choice, char_choice)
-						print(set_choice)
-						for a in set_choice:
-							char_choice.equipit(True, a)
+						if set_choice is not None:
+							print(set_choice)
+							set_choice=armor_equip_order(set_choice, char_choice)
+							print(set_choice)
+							for a in set_choice:
+								char_choice.equipit(True, a)
+						else:
+							print("Nothing selected")
 					else:
 						char_armors=armor_max_def(char_choice)
 						set_choice=select_armor_sets(char_armors, 2)
-						print(set_choice)
-						set_choice=armor_equip_order(set_choice, char_choice)
-						print(set_choice)
-						for a in set_choice:
-							char_choice.equipit(True, a)
+						if set_choice is not None:
+							print(set_choice)
+							set_choice=armor_equip_order(set_choice, char_choice)
+							print(set_choice)
+							for a in set_choice:
+								char_choice.equipit(True, a)
+						else:
+							print("Nothing selected")
 			elif armor_flavor==2:
 				print('Choose an option below:')
 				print('1: Auto equip best set without conflict')
@@ -2327,19 +2333,25 @@ def interface():
 						char_armors=armor_max_open(char_choice)
 						new_armors=remove_armor_conflicts(char_armors, 2)
 						set_choice=select_armor_sets(new_armors, 2)
-						print(set_choice)
-						set_choice=armor_equip_order(set_choice, char_choice)
-						print(set_choice)
-						for a in set_choice:
-							char_choice.equipit(True, a)
+						if set_choice is not None:
+							print(set_choice)
+							set_choice=armor_equip_order(set_choice, char_choice)
+							print(set_choice)
+							for a in set_choice:
+								char_choice.equipit(True, a)
+						else:
+							print("Nothing selected")
 					else:
 						char_armors=armor_max_def(char_choice)
 						set_choice=select_armor_sets(char_armors, 2)
-						print(set_choice)
-						set_choice=armor_equip_order(set_choice, char_choice)
-						print(set_choice)
-						for a in set_choice:
-							char_choice.equipit(True, a)
+						if set_choice is not None:
+							print(set_choice)
+							set_choice=armor_equip_order(set_choice, char_choice)
+							print(set_choice)
+							for a in set_choice:
+								char_choice.equipit(True, a)
+						else:
+							print("Nothing selected")
 			elif armor_flavor==3:
 				print('Choose an option below:')
 				print('1: Auto equip best set without conflict')
@@ -2353,19 +2365,25 @@ def interface():
 						char_armors=armor_max_filtered(char_choice)
 						new_armors=remove_armor_conflicts(char_armors, 2)
 						set_choice=select_armor_sets(new_armors, 2)
-						print(set_choice)
-						set_choice=armor_equip_order(set_choice, char_choice)
-						print(set_choice)
-						for a in set_choice:
-							char_choice.equipit(True, a)
+						if set_choice is not None:
+							print(set_choice)
+							set_choice=armor_equip_order(set_choice, char_choice)
+							print(set_choice)
+							for a in set_choice:
+								char_choice.equipit(True, a)
+						else:
+							print("Nothing selected")
 					else:
 						char_armors=armor_max_def(char_choice)
 						set_choice=select_armor_sets(char_armors, 2)
-						print(set_choice)
-						set_choice=armor_equip_order(set_choice, char_choice)
-						print(set_choice)
-						for a in set_choice:
-							char_choice.equipit(True, a)
+						if set_choice is not None:
+							print(set_choice)
+							set_choice=armor_equip_order(set_choice, char_choice)
+							print(set_choice)
+							for a in set_choice:
+								char_choice.equipit(True, a)
+						else:
+							print("Nothing selected")
 		elif armor_choice==2:	#Armor builds from searched terms
 			char_armors=special_builds(char_choice)
 			if char_armors is not None:
@@ -2378,9 +2396,14 @@ def interface():
 				if 'y'==yes_or_no():
 					#equip_armors(char_armors, 99, char_choice)
 					set_choice=select_armor_sets(char_armors, 99)
-					set_choice=armor_equip_order(set_choice, char_choice)
-					for a in set_choice:
-						char_choice.equipit(True, a)
+					if set_choice is not None:
+						print(set_choice)
+						set_choice=armor_equip_order(set_choice, char_choice)
+						print(set_choice)
+						for a in set_choice:
+							char_choice.equipit(True, a)
+					else:
+						print("Nothing selected")
 			else:
 				print("No items met your requirements.")
 	elif action_choice==2:	#Weapon Builds
@@ -2422,7 +2445,7 @@ def interface():
 						equip_max_weapons(bow_weapons, 'Physical', char_choice)
 					else:
 						equip_max_weapons(physical_weapons, 'Physical', char_choice)
-				elif pierce_choice==2:
+				elif pierce_choice==2:	##REMOVE ALL BOWS
 					physical_weapons=max_phys_damage(char_choice, phys_choice)
 					new_weapons=[]
 					for a in physical_weapons:
@@ -2430,7 +2453,7 @@ def interface():
 							bow_strings=['bow', 'arbalest']
 							is_bow=False
 							for b in bow_strings:
-								if bool(re.search(b, weapons[a[0]], re.IGNORECASE)):
+								if bool(re.search(b, weapons[a[0]][0], re.IGNORECASE)):
 									is_bow=True
 							if not is_bow:
 								new_weapons.append(a)
@@ -2742,8 +2765,8 @@ def select_armor_sets(combos, combo_start):
 	set_chosen=False
 	set_count=1
 	while not set_chosen:
-		if print_end>len(combos):
-			set_chose=True
+		if print_end>=len(combos):
+			set_chosen=True
 		for a in range(print_start, print_end):
 			curr_set=combos[a]
 			if type(curr_set[0])!=list:
@@ -2789,8 +2812,14 @@ def select_armor_sets(combos, combo_start):
 			set_chosen=True
 			return total_combo_items[set_picked-1]
 		else:
-			print_start+=3
-			print_end+=3
+			if (print_start+3)<=(len(combos)-3):
+				print_start+=3
+			else:
+				print_start=len(combos)-3
+			if (print_end+3)<=len(combos):
+				print_end+=3
+			else:
+				print_end=len(combos)
 				
 #					
 #print armor sets provided in formatted style
@@ -3655,6 +3684,7 @@ def view_database_interface():
 			really_exit=yes_or_no()
 			if really_exit=='y':
 				database_view=False
+		input("Press enter to continue.")
 	
 #
 #get a number input and return it as an integer value									
@@ -3765,12 +3795,12 @@ class player:
 								if number_select(2)==1:
 									self.unequip(self.equipped[6],6)
 									self.equipped[6]=int(item)
-									if not self.has_shield:
-										self.dual_wielding=True
 								else:
 									self.unequip(self.equipped[7],7)
 									self.equipped[7]=int(item)
-									self.dual_wielding=True
+								if self.equipped[6]!=0 and self.equipped[7]!=0 and not self.has_shield and \
+								self.equipped[6]!=self.equipped[7]:
+										self.dual_wielding=True
 							print(str(self.name) + ' equipped ' + str(weapons[item][0]) + '!')
 							used_items.add(item, False)
 						##MAIN HAND FULL, SIDE HAND OPEN	
@@ -3785,7 +3815,7 @@ class player:
 							print(str(self.name) + ' equipped ' + str(weapons[item][0]) + '!')
 							used_items.add(item, False)
 				else:
-					print(armor[item][0]+"'s requirements are too high for "+self.name)
+					print(weapons[item][0]+"'s requirements are too high for "+self.name)
 			#Equip armor items
 			if is_armor:
 				##CHECK REQS OF ITEM
@@ -3900,10 +3930,10 @@ class player:
 							#print(armor[self.equipped[x]][0])
 						else:
 							temp_specials=find_specials(self.equipped[7], 'weapon')
-							print(weapons[self.equipped[x]][0])
+							#print(weapons[self.equipped[x]][0])
 					elif x==6:
 						temp_specials=find_specials(self.equipped[6], 'weapon')
-						print(weapons[self.equipped[x]][0])
+						#print(weapons[self.equipped[x]][0])
 				'''for a in temp_specials:
 					print(a)'''
 				for y in range(0,len(temp_specials)):
