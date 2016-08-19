@@ -6,7 +6,6 @@ This is a python project I started as a way to view and sort my equipable items 
 ###Key Features:
 #####Displaying all your characters' info.
 - example of character info display:
-
 ```
 --------------------------------------------------------------
 Wolgraff Attributes                    Abilities              Equipment
@@ -40,13 +39,12 @@ Wolgraff Attributes                    Abilities              Equipment
                                        Pickpocketing     2
 --------------------------------------------------------------
 ```
-
-- The informationg displayed should be familiar to anyone who's played **Divinity Original Sin**. The main interface of the program will display all character's inforamtion entered into your Attributes and Abilities CSV files here.
+- The information displayed should be familiar to anyone who's played **Divinity Original Sin**. The main interface of the program will display all character's information entered into your Attributes and Abilities CSV files here.
 - Currently the program only supports the first 4 characters. It should be able to handle more fine but I've been testing it with my main party so I haven't tested the program with more than 4 characters at once. I'm not sure how many, if any, bugs would pop up from adding more.
 - That being said it should be easy to fix and I will probably update it soon to allow a higher maximum characters displayed at once.
-- After every action is completed, all characters' ratings will be calculated, or re-calculated depending on the action, and a new dsiplay will be printed with their updated values.
+- After every action is completed, all characters' ratings will be calculated, or re-calculated depending on the action, and a new display will be printed with their updated values.
 - As for the ratings information, right now only *Damage through Critical Chance* is actually calculated and updated.
-  -The math behind some of D:OS's attributes was actually hard to find (ie Vitality, Offense/Defense Ratings, and Elemental Damage) so I opted to leave them out rather than give inaccurate data. *Apologizies in advance if some of the values that are calculated don't match up with the actual game values.*
+  -The math behind some of D:OS's attributes was actually hard to find (ie Vitality, Offense/Defense Ratings, and Elemental Damage) so I opted to leave them out rather than give inaccurate data. *Apologies in advance if some of the values that are calculated don't match up with the actual game values.*
   
 #####Armor Builds:
 - One of the longest parts of the program in terms of calculating time.
@@ -66,7 +64,7 @@ Wolgraff Attributes                    Abilities              Equipment
 - In the same way armor sets are built to maximize a character's **Armour Rating**, weapon sets can be built to get the weapon with the highest damage from selection made by the user for a specific Character.
 - Weapon sets can be built for the 3 Physical damage types *(Crushing, Piercing and Slashing)* or the multiple Elemental types.
   - Physical sets can be filtered to remove or exclusively contain Bows, Crossbows, or Dual wielding combinations. 
-- Elemental type damage weapons will have similar options but the main information page won't diplay the damage expected from the character for that weapon.
+- Elemental type damage weapons will have similar options but the main information page won't display the damage expected from the character for that weapon.
 
 #####View Inventory:
 - The instigator of this whole mess.
@@ -74,7 +72,7 @@ Wolgraff Attributes                    Abilities              Equipment
 - The table format will launch an interface just for viewing your inventory.
   - You must select whether you want to view your armor or weapons database.
     - Unfortunately I felt it would be too complicated to try and sort and display both the databases at once.
-    - You may also notice the last for rows of data aren't in alignment. The special attributes of items can often be long and cause lines to continue to the next row breaking up the orgintization of the table. I opted to leave it unforamtted to save space since they are the least uniform data from item to item.
+    - You may also notice the last for rows of data aren't in alignment. The special attributes of items can often be long and cause lines to continue to the next row breaking up the organization of the table. I opted to leave it unforamtted to save space since they are the least uniform data from item to item.
   - From there you can sort by any of the columns of the data base and chose to try and equip an item to a character.
     - I say try since the program does check a character's attributes and the requirements of an item before *equipping* it to a character. If the item's requirements are too high it won't be equipped.
   - You can also choose when you want to exit and go back to the main character info.
@@ -83,7 +81,7 @@ Wolgraff Attributes                    Abilities              Equipment
 - You can search either your weapons or armor items for any search term you enter and opt to equip the results to any character you wish, barring requirements again.
 - If you enter a term that matches an attribute, ability or resistance you will be prompted if you'd like to generate combinations from your items to maximize that particular value for a character.
 - This is also an option under armor builds.
-  - From there you'll be able to choose a build from scratch or from your character's open equpment slots.
+  - From there you'll be able to choose a build from scratch or from your character's open equipment slots.
   - This can help you take advantage of open equipment slots to squeeze the most out of your inventory.
 
 #####Saving and Loading
@@ -100,20 +98,20 @@ Wolgraff Attributes                    Abilities              Equipment
   - The biggest things to remember are **Keep the formatting of the cells as similar to mine as possible** to avoid any errors on reading the data. 
   - **_Apostrophe_**'s are a big No-go for the item names. 
     - Python can't print them out and you'll get errors when it tries to display them, so avoid at all costs. 
-  - **USE "N/A" WHEN THERE IS NO VALUE FOR AN ITEM IN A PARTICULAR CATERGORY!**
+  - **USE "N/A" WHEN THERE IS NO VALUE FOR AN ITEM IN A PARTICULAR CATEGORY!**
     - The program looks for "N/A" (in caps too) to know that an item has no value there and adjusts accordingly during calculations
-  - Keep capitilizations in the item **Type** catergory.
-    - Several functions in the program search for exact matches of item types so Capitilization and spelling count.
+  - Keep capitalization in the item **Type** category.
+    - Several functions in the program search for exact matches of item types so Capitalization and spelling count.
   - Another thing to look out for is Excel trying to convert the damage values to a date format.
     - The program specifically looks for the "-" to get the high and low damage values of a weapon.
   - For special buffs always start with the number value and then a *+/-* to signify if it adds or subtracts from a character's value.
     - ie "1+ Shield Specialist" "11% Poison Resistance" or "0.5- Movement"
-- The simplest way to enter your inventory would be to add your items to the already filled out spreadsheet and let the spreadsheet program you use autofill when applicable and use those entries (ie Damage types, Armor Types, Special Buffs etc.)
+- The simplest way to enter your inventory would be to add your items to the already filled out spreadsheet and let the spreadsheet program you use auto-fill when applicable and use those entries (ie Damage types, Armor Types, Special Buffs etc.)
 - Once you have as many of your items in as you want, delete my inventory and leave only your items.
 - Once you've done that for **Armor**, **Weapons**, **Character Attributes**, and **Character Abilities** you can save each sheet as a **.CSV** file and place it in the folder of the program.
 - As long as you have "weapon", "armor", "attributes" and "abilities" in the file names, the program will be able to automatically find them.
   - The program will prompt you if you see the wrong file associated with each database however and you can add the proper files in at any time in which case the system will reload and search again before going into the main program.
-- As you play the game you can keep track of inventory and cahracter changes in the spreadsheet and save a new **.CSV** as neccesary to update your database.
+- As you play the game you can keep track of inventory and character changes in the spreadsheet and save a new **.CSV** as necessary to update your database.
 
 ##Thanks
-If you use the program I'd love any feed back. If the program closes out without you promting it to, you probably encountered an error. Feel free to leave an issues you have here and if I have some free time I'll be sure to look into a possible fix for it. And if you are some one familiar with coding yourself, feel free to branch this git and adjust it to your liking. Thanks and have fun Source Hunters.
+If you use the program I'd love any feed back. If the program closes out without you prompting it to, you probably encountered an error. Feel free to leave an issues you have here and if I have some free time I'll be sure to look into a possible fix for it. And if you are some one familiar with coding yourself, feel free to branch this git and adjust it to your liking. Thanks and have fun Source Hunters.
