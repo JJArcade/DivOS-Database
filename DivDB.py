@@ -2428,6 +2428,13 @@ def interface():
 		print("1. Physical Damage (i.e. Slashing, Crushing, etc.) \n"+
 			"2. Elemental Damage (i.e. Fire, Poison, Air, etc.)")
 		damage_choice=number_select(2)
+		##EQUIP TYPE FOR WEAPONS
+		print("How would you like to equip the items?")
+		print("1. Auto equip the best set without conflict."+'\n'+"2. View items and select from list.")
+		if number_select(2)==1:
+			auto_equip=True
+		else:
+			auto_equip=False
 		if damage_choice==1:	#MAXAMIZE PHYSICAL DAMAGE
 			print("What type of physical damage would you like?")
 			print("1. Crushing \n2. Slashing \n3. Piercing")
@@ -2448,9 +2455,9 @@ def interface():
 							is_arbalest=bool(re.search('arbalest', weap_name, re.IGNORECASE))
 							if is_crossbow==False and is_arbalest==False:
 								bow_weapons.append(a)
-						equip_max_weapons(bow_weapons, 'Physical', char_choice)
+						equip_weapon_set(bow_weapons, char_choice, auto_equip)
 					else:
-						equip_max_weapons(physical_weapons, 'Physical', char_choice)
+						equip_weapon_set(physical_weapons, char_choice, auto_equip)
 				elif pierce_choice==2:	##REMOVE ALL BOWS
 					physical_weapons=max_phys_damage(char_choice, phys_choice)
 					new_weapons=[]
@@ -2469,58 +2476,60 @@ def interface():
 					print('1. Include single and dual wield \n2. Only single weapons \n3. Only dual wields')
 					include_choice=number_select(3)
 					if include_choice==1:
-						equip_max_weapons(new_weapons, 'Physical', char_choice)
+						equip_weapon_set(new_weapons, char_choice, auto_equip)
 					elif include_choice==2:
 						single_weapons=[]
 						for a in new_weapons:
 							if type(a[0])==int:
 								single_weapons.append(a)
-						equip_max_weapons(single_weapons, 'Physical', char_choice)
+						equip_weapon_set(single_weapons, char_choice, auto_equip)
 					elif include_choice==3:
 						dual_wields=[]
 						for a in new_weapons:
 							if type(a[0])!=int:
 								dual_wields.append(a)
-						equip_max_weapons(dual_wields, 'Physical', char_choice)
-				elif pierce_choice==3:
+						equip_weapon_set(dual_wields, char_choice, auto_equip)
+				elif pierce_choice==3:	##ALL PIERCE DAMAGE
 					physical_weapons=max_phys_damage(char_choice, phys_choice)
 					print('Choose an option below:')
 					print('1. Include single and dual wield \n2. Only single weapons \n3. Only dual wields')
 					include_choice=number_select(3)
 					if include_choice==1:
-						equip_max_weapons(physical_weapons, 'Physical', char_choice)
+						equip_weapon_set(physical_weapons, char_choice, auto_equip)
 					elif include_choice==2:
 						single_weapons=[]
 						for a in physical_weapons:
 							if type(a[0])==int:
 								single_weapons.append(a)
-						equip_max_weapons(single_weapons, 'Physical', char_choice)
+						equip_weapon_set(single_weapons, char_choice, auto_equip)
 					elif include_choice==3:
 						dual_wields=[]
 						for a in physical_weapons:
 							if type(a[0])!=int:
 								dual_wields.append(a)
-						equip_max_weapons(dual_wields, 'Physical', char_choice)
-			else:
+						equip_weapon_set(dual_wields, char_choice, auto_equip)
+			else:	#NON PIERCE TYPES
 				physical_weapons=max_phys_damage(char_choice, phys_choice)
 				print('Choose an option below:')
 				print('1. Include single and dual wield \n2. Only single weapons \n3. Only dual wields')
 				include_choice=number_select(3)
 				if include_choice==1:
-					equip_max_weapons(physical_weapons, 'Physical', char_choice)
+					equip_weapon_set(physical_weapons, char_choice, auto_equip)
 				elif include_choice==2:
 					single_weapons=[]
 					for a in physical_weapons:
 						if type(a[0])==int:
 							single_weapons.append(a)
-					equip_max_weapons(single_weapons, 'Physical', char_choice)
+					equip_weapon_set(single_weapons, char_choice, auto_equip)	###MARK
+					#equip_max_weapons(single_weapons, 'Physical', char_choice)
 				elif include_choice==3:
 					dual_wields=[]
 					for a in physical_weapons:
 						if type(a[0])!=int:
 							dual_wields.append(a)
-							print(a)
-					equip_max_weapons(dual_wields, 'Physical', char_choice)
+							#print(a)
+					equip_weapon_set(dual_wields, char_choice, auto_equip)	###MARK
+					#equip_max_weapons(dual_wields, 'Physical', char_choice)
 		elif damage_choice==2:	#MAX ELEMENTAL DAMAGE
 			print("What type of Elemental damage would you like?")
 			print("1. Fire \n2. Water \n3. Earth \n4. Air \n5. Tenebrium \n6. Poison")
@@ -2528,7 +2537,8 @@ def interface():
 				6: 'Poison'}
 			elem_choice=elem_dam_types[number_select(6)]
 			elemental_weapons=max_elem_damage(char_choice, elem_choice)
-			equip_max_weapons(elemental_weapons, 'elemental', char_choice)		
+			equip_weapon_set(elemental_weapons, char_choice, auto_equip)
+			#equip_max_weapons(elemental_weapons, 'elemental', char_choice)		
 	elif action_choice==3:	#View Items in Inventory
 		print("Please choose an action:")
 		print("1. View items in use \n2. View Characters equipment details \n3. View Database")
@@ -3520,6 +3530,8 @@ def equip_max_weapons(weaps, weap_typ, char):
 				print("There are "+str(seq_count)+" weapon sets that have conflicts "+
 					"with other characters' equipemnt, "+
 						"before the first weapon set with out a conflict.")
+				print(weaps[0])	###DELETE LATER
+				print(weaps[seq_count])	###DELETE LATER
 				print("The damage difference between the highest weapon set and the first "+
 					"conflict free set is: "+str(weaps[0][2]-weaps[seq_count][2]))
 				print("Would you like to go to the conflict free weapon?")
@@ -3603,6 +3615,297 @@ def equip_max_weapons(weaps, weap_typ, char):
 			else:
 				char.equipit(False, curr_set[0])				
 
+#
+#new function to equip weapons
+def equip_weapon_set(weaps, char, auto):
+	##FIND LIST LOCATION WHERE COMBOS AND DAMAGE START
+	combos_found=False
+	damage_found=False
+	for a in weaps:
+		i=0
+		for b in a:
+			if b=='y' and not damage_found:
+				damage_loc=i-1
+				damage_found=True
+			if type(b) is list:
+				if len(b)>5 and not combos_found:
+					combos_start=i
+					combos_found=True
+			i+=1
+	##MAKE NEW LISTS, 1 FOR EACH COMBO
+	new_weaps=[]
+	for a in weaps:
+		temp_holder=[]
+		if len(a)>combos_start:
+			for b in range(combos_start, len(a)):
+				temp_holder=[a[0],a[b]]
+				new_weaps.append(temp_holder)
+		else:
+			temp_holder=[a[0]]
+			new_weaps.append(temp_holder)
+			
+	##BEGIN LOOKING FOR CONFLCITS
+	conflict_sets={}
+	i=0
+	for a in new_weaps:
+		is_conflict=False
+		conflict_chars=[]
+		if type(a[0]) is list:
+			for b in a:
+				if b in used_items.weapons:
+					is_conflict=True
+					for c in char_list:
+						for d in char_list[c].equipped:
+							if b==d:
+								if char_list[c].name not in conflict_chars:
+									conflict_chars.append(char_list[c].name)
+		else:
+			if a[0] in used_items.weapons:
+				is_conflict=True
+				for c in char_list:
+					for d in char_list[c].equipped:
+						if a[0]==d:
+							if char_list[c].name not in conflict_chars:
+								conflict_chars.append(char_list[c].name)
+		if len(a)>1:
+			for b in a[1]:
+				if b in used_items.armors:
+					is_conflict=True
+					for c in char_list:
+						for d in char_list[c].equipped:
+							if b==d:
+								if char_list[c].name not in conflict_chars:
+									conflict_chars.append(char_list[c].name)
+		if is_conflict:
+			conflict_sets[i]=conflict_chars
+		i+=1
+		
+	##AUTO EQUIP
+	if len(conflict_sets)!=len(new_weaps):
+		if auto:
+			i=0
+			equip_done=False
+			while not equip_done:
+				if i not in conflict_sets:
+					equip_done=True
+					a=new_weaps[i]
+					if len(a)>1:
+						for b in a[1]:
+							char.equipit(True, b)
+					if type(a[0])==list:
+						for b in a[0]:
+							char.equipit(False, b)
+					else:
+						char.equipit(False, a[0])
+				i+=1
+		else:
+			print_start=0
+			if len(new_weaps)<5:
+				print_end=len(new_weaps)
+			else:
+				print_end=5
+			equip_done=False
+			while not equip_done:
+				if len(new_weaps)==print_end:
+					equip_done=True
+					print("This is the end of the list.")
+				for a in range(print_start, print_end):
+					curr_set=new_weaps[a]
+					print(str(a+1)+':')
+					##BEGIN PRINTING ROWS
+					if a in conflict_sets:
+						print_weapon_set(curr_set, conflict_sets[a])
+					else:
+						print_weapon_set(curr_set, 0)
+					print('\n')
+				print("Would you like to equip one of the sets above?")
+				if 'y'==yes_or_no():
+					equip_done=True
+					print("Enter the number of the set you would like to equip.")
+					set_choice=number_select(print_end-1)-1
+					curr_set=new_weaps[set_choice]
+					if set_choice in conflict_sets:
+						for a in conflict_sets[set_choice]:
+							for b in char_list:
+								if char_list[b].name==a:
+									char_list[b].clear_equipment()
+					if len(curr_set)>1:
+						for b in curr_set[1]:
+							char.equipit(True, b)
+					if type(curr_set[0])==list:
+						for b in curr_set[0]:
+							char.equipit(False, b)
+					else:
+						char.equipit(False, curr_set[0])
+				else:
+					if (print_start+5)>=len(new_weaps):
+						print_start=len(new_weaps)-5
+					else:
+						print_start+=5
+					if (print_end+5)>len(new_weaps):
+						print_end=len(new_weaps)
+					else:
+						print_end+=5
+				
+	input("Pause for effect")
+	
+#
+#PRINT WEAPON SETS
+def print_weapon_set(weap_set, conflict_dict):
+	equip_items=[0]*len(equipment_headers)
+	_shield=False
+	if len(weap_set)>1:
+		i=0
+		for a in weap_set[1]:
+			equip_items[i]=a
+			if i==5:
+				i+=2
+			else:
+				i+=1
+	##MARK IF SHIELD IS EQUIPPED
+	if equip_items[7]==0:
+		_shield=True
+	if type(weap_set[0]) is list:
+		i=0
+		for a in [6,7]:
+			equip_items[a]=weap_set[0][i]
+		i+=1
+	else:
+		if weapons[weap_set[0]][2]==2:
+			equip_items[6]=weap_set[0]
+			equip_items[7]=weap_set[0]
+		else:
+			equip_items[6]=weap_set[0]
+	##FIND SPECIALS
+	total_specials=[]
+	i=0
+	for a in equip_items:
+		if i not in [6,7]:
+			if i==0:
+				total_specials=find_specials(a, 'armor')
+			else:
+				x=find_specials(a, 'armor')
+				for j in range(0,len(x)):
+					for k in range(0,len(x[j])):
+						total_specials[j][k]+=x[j][k]
+		elif i==6 and (equip_items[6]==equip_items[7]) and not _shield:
+			x=find_specials(a, 'weapon')
+			for j in range(0,len(x)):
+				for k in range(0,len(x[j])):
+					total_specials[j][k]+=x[j][k]
+		elif not _shield:
+			if i==6:
+				x=find_specials(a, 'weapon')
+				for j in range(0,len(x)):
+					for k in range(0,len(x[j])):
+						total_specials[j][k]+=x[j][k]
+			elif i==7:
+				x=find_specials(a, 'weapon')
+				for j in range(0,len(x)):
+					for k in range(0,len(x[j])):
+						total_specials[j][k]+=x[j][k]
+		elif _shield:
+			if i==6:
+				x=find_specials(a, 'weapon')
+				for j in range(0,len(x)):
+					for k in range(0,len(x[j])):
+						total_specials[j][k]+=x[j][k]
+			elif i==7:
+				x=find_specials(a, 'armor')
+				for j in range(0,len(x)):
+					for k in range(0,len(x[j])):
+						total_specials[j][k]+=x[j][k]
+		i+=1
+	##BEGIN PRINTING
+	column_spaces=[0,0]
+	for a in equipment_headers:
+		if a not in [6,7]:
+			if (len(equipment_headers[a])+len(armor[equip_items[a]][0])+2)>column_spaces[0]:
+				column_spaces[0]=(len(equipment_headers[a])+len(armor[equip_items[a]][0])+2)
+		else:
+			if (len(equipment_headers[a])+len(weapons[equip_items[a]][0])+2) > column_spaces[0]:
+				column_spaces[0]=(len(equipment_headers[a])+len(weapons[equip_items[a]][0])+2)
+	for a in [0,2]:
+		if a==0:
+			for b in attr_headers:
+				if (len(attr_headers[b])+2+len(str(total_specials[a][b]))+2) > column_spaces[1]:
+					column_spaces[1]=(len(attr_headers[b])+2+len(str(total_specials[a][b]))+2)
+		elif a==1:
+			for b in resistance_headers:
+				if (len(resistance_headers[b])+2+len(str(total_specials[a][b]))+2) > column_spaces[1]:
+					column_spaces[1]=(len(resistance_headers[b])+2+len(str(total_specials[a][b]))+2)
+	##THE ACTUAL PRINTING
+	for a in range(1,len(abil_headers)):
+		if a<=6:
+			#equipment
+			if a not in [6,7]:
+				row_str=equipment_headers[a-1]+': '+armor[equip_items[a-1]][0]
+				row_str=row_str.ljust(column_spaces[0],' ')+'|'
+			else:
+				row_str=equipment_headers[a-1]+': '+weapons[equip_items[a-1]][0]
+				row_str=row_str.ljust(column_spaces[0],' ')+'|'
+			#attributes
+			row_str+=(attr_headers[a+1]+': '+str(total_specials[0][a+1])).ljust(column_spaces[1],' ')
+			row_str+='|'
+			#abilities
+			row_str+=abil_headers[a]+': '+str(total_specials[1][a])
+		elif a<=11:
+			#equipment
+			if a not in [6,7]:
+				row_str=equipment_headers[a-1]+': '+armor[equip_items[a-1]][0]
+				row_str=row_str.ljust(column_spaces[0],' ')+'|'
+			elif not _shield:
+				row_str=equipment_headers[a-1]+': '+weapons[equip_items[a-1]][0]
+				row_str=row_str.ljust(column_spaces[0],' ')+'|'
+			elif _shield:
+				row_str=equipment_headers[a-1]+': '+weapons[equip_items[a-1]][0]
+				row_str=row_str.ljust(column_spaces[0],' ')+'|'
+			#resistances
+			row_str+=(resistance_headers[a-7]+': '+str(total_specials[2][a-7])).ljust(column_spaces[1],' ')
+			row_str+='|'
+			#abilities
+			row_str+=abil_headers[a]+': '+str(total_specials[1][a])
+		elif a<=12:
+			#Damage1
+			row_str='Raw Damage 1: '+str(weapons[equip_items[6]][3])
+			row_str=row_str.ljust(column_spaces[0],' ')
+			row_str+='|'
+			#resistances
+			row_str+=(resistance_headers[a-7]+': '+str(total_specials[2][a-7])).ljust(column_spaces[1],' ')
+			row_str+='|'
+			#abilities
+			row_str+=abil_headers[a]+': '+str(total_specials[1][a])
+		else:
+			#Damage2 \ First column
+			if a==13:
+				conflict_print=False
+				if equip_items[6]!=equip_items[7] and not _shield:
+					row_str='Raw Damage 2: '+str(weapons[equip_items[7]][3])
+					row_str=row_str.ljust(column_spaces[0],' ')
+					row_str+='|'
+				elif type(conflict_dict) is list:
+					i=0
+					conflict_print=True
+					row_str='Conflicts:'.ljust(column_spaces[0],' ')+'|'
+				else:
+					row_str=''.ljust(column_spaces[0],' ')+'|'
+			elif type(conflict_dict) is list and not conflict_print:
+				i=0
+				conflict_print=True
+				row_str='Conflicts:'.ljust(column_spaces[0],' ')+'|'
+			elif conflict_print:
+				if i<len(conflict_dict):
+					row_str=conflict_dict[i].ljust(column_spaces[0],' ')+'|'
+					i+=1
+				else:
+					row_str=''.ljust(column_spaces[0],' ')+'|'
+			else:
+				row_str=''.ljust(column_spaces[0],' ')+'|'
+			row_str+=''.ljust(column_spaces[1],' ')+'|'
+			#abilities
+			row_str+=abil_headers[a]+': '+str(total_specials[1][a])
+		print(row_str)
+	
 #
 #sort armor set to be equipped in a way that the items that provide attributes buffs
 #are equipped first allowing the armors with higher levels to be equipped by the character
@@ -3783,7 +4086,7 @@ class player:
 					item_type = weapons[item][type_col]
 					hands_req = int(weapons[item][hands_col])
 					if hands_req == 2:
-						for x in [6,7]:
+						for x in [7,6]:
 							if self.equipped[x]!=0:
 								self.unequip(self.equipped[x], x)
 						self.equipped[6] = item
