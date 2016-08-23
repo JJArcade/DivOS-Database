@@ -550,6 +550,7 @@ def dmg_hilo(weap, typ, hilo):
 #
 #get any possible attribute/ability/resistance value buffs that an item will have and return them as a list		
 def find_specials(it, typ):
+	it=int(it)
 	attr_adj=[0]*(int(len(char1.attr)))
 	abil_adj=[0]*(len(char1.abil))
 	res_adj=[0]*(len(char1.resistance))
@@ -1105,7 +1106,8 @@ def max_phys_damage(char, damage_type):
 				second_dam=single_handed_weapons[y][1]
 				current_combo=[first_weap, second_weap]
 				combo_dam=first_dam+second_dam
-				dual_wield_combos.append([current_combo, combo_dam])
+				if first_weap!=second_weap:	##AVOID DOUBLES OF SAME ITEM
+					dual_wield_combos.append([current_combo, combo_dam])
 		print('Total number of Dual Wield combinations is: '+str(len(dual_wield_combos)))
 		##SORT 'dual_wield_combos' BY DAMAGE FROM HIGH-LOW
 		dual_wield_combos=sorted(dual_wield_combos, key=lambda dual_wield_combos: dual_wield_combos[1], reverse=True)
@@ -1271,8 +1273,8 @@ def max_phys_damage(char, damage_type):
 				##GENERATE COMBOS FROM SEARCHED ITEMS
 				item_combos=armor_item_combos(buff_items, make_access_combos)
 				##GET COMBINED BUFFS OF COMBO LIST
-				temp_buffs=[]
 				for y in item_combos:
+					temp_buffs=[]
 					for h in range(0,len(y)):
 						z=y[h]
 						A=find_specials(z, 'armor')
@@ -1284,7 +1286,7 @@ def max_phys_damage(char, damage_type):
 								temp_buffs[a]+=A[a]
 					##IF BUFFS ARE ENOUGH TO MEET REQ,
 					##ADD Y TO END OF COMBO_STRING, ELSE ADD N
-					if temp_attr[attr_col]+temp_buffs[attr_col]>=x[4][1]:
+					if (temp_attr[attr_col]+temp_buffs[attr_col])>=x[4][1]:
 						#y=[y, 'y']
 						x[3]='y'
 						x.append(y)
@@ -1735,8 +1737,8 @@ def max_elem_damage(char, element_type):
 			else:
 				elem_file.write(str(x[0])+' '+weapons[x[0][0]][0]+' '+weapons[x[0][1]][0]+' Item Combos and their buffs'+'\n')'''
 			##GET COMBINED BUFFS OF COMBO LIST
-			temp_buffs=[]
 			for y in item_combos:
+				temp_buffs=[]
 				for z in y:
 					if z!=0:
 						A=find_specials(z, 'armor')
@@ -2183,57 +2185,50 @@ def armor_item_combos(item_list, accs_combos):
 	for y in buff_items:
 		if armor[y][1]=='Helmet':
 			buff_helmets.append(y)
-	if len(buff_helmets)==0:
-		buff_helmets.append(0)	#add a 0 if no items
+	buff_helmets.append(0)	#add a 0 if no items
 		
 	buff_chest=[]	#CHEST PIECES
 	for y in buff_items:
 		if armor[y][1]=='Chest':
 			buff_chest.append(y)
-	if len(buff_chest)==0:
-		buff_chest.append(0)
+	buff_chest.append(0)
 		
 	buff_under=[]	#UNDERGARMENTS
 	for y in buff_items:
 		if armor[y][1]=='Undergarment':
 			buff_under.append(y)
-	if len(buff_under)==0:
-		buff_under.append(0)
+	buff_under.append(0)
 		
 	buff_waist=[]	#WAIST PIECES
 	for y in buff_items:
 		if armor[y][1]=='Waist':
 			buff_waist.append(y)
-	if len(buff_waist)==0:
-		buff_waist.append(0)
+	buff_waist.append(0)
 		
 	buff_boots=[]	#BOOTS
 	for y in buff_items:
 		if armor[y][1]=='Boots':
 			buff_boots.append(y)
-	if len(buff_boots)==0:
-		buff_boots.append(0)
+	buff_boots.append(0)
 		
 	buff_gloves=[]	#GLOVES
 	for y in buff_items:
 		if armor[y][1]=='Gloves':
 			buff_gloves.append(y)
-	if len(buff_gloves)==0:
-		buff_gloves.append(0)
+	buff_gloves.append(0)
 		
 	buff_shields=[]	#SHIELDS
 	for y in buff_items:
 		if armor[y][1]=='Shield':
 			buff_shields.append(y)
-	if len(buff_shields)==0:
-		buff_shields.append(0)
+	buff_shields.append(0)
 		
 	buff_amulets=[]	#AMULETS
 	for y in buff_items:
 		if armor[y][1]=='Amulet':
 			buff_amulets.append(y)
-	if len(buff_amulets)==0:
-		buff_amulets.append(0)
+	buff_amulets.append(0)
+	
 	##BEGIN GENERATING COMBOS
 	item_combos=[]
 	for a in buff_helmets:
@@ -2724,45 +2719,48 @@ def interface():
 				equip_file.write(store_string+'\n')
 			equip_file.close()
 		else:
-			print("Please select a file to load from.")
-			for a in save_files:
-				print(str(a)+': '+str(save_files[a]))
-			file_choice=save_files[number_select(len(save_files))]
-			equip_file=open(file_choice, 'r')
-			equip_lines=csv.reader(equip_file)
-			loaded_equipment=list(equip_lines)
-			equip_file.close()
-			for a in char_list:
-				char_list[a].clear_equipment()
-			if len(loaded_equipment)>0:
+			if save_found:
+				print("Please select a file to load from.")
+				for a in save_files:
+					print(str(a)+': '+str(save_files[a]))
+				file_choice=save_files[number_select(len(save_files))]
+				equip_file=open(file_choice, 'r')
+				equip_lines=csv.reader(equip_file)
+				loaded_equipment=list(equip_lines)
+				equip_file.close()
 				for a in char_list:
-					i=char_list[a]
-					if loaded_equipment[a-1][0]==i.name:
-						armor_set=[]
-						weapon_set=[]
-						for b in range(1,len(loaded_equipment[a-1])-1):
-							equip_slot=b-1
-							j=int(loaded_equipment[a-1][b])
-							if equip_slot!=6 and equip_slot!=7:
-									armor_set.append(j)
-							else:
-								if loaded_equipment[a-1][7]==loaded_equipment[a-1][8] and int(loaded_equipment[a-1][7])!=0:
-									if int(loaded_equipment[a-1][7]) not in weapon_set:
-										weapon_set.append(int(loaded_equipment[a-1][7]))
-								elif equip_slot==7 and loaded_equipment[a-1][len(loaded_equipment[a-1])-1]=='shield':
-									armor_set.append(j)
-								elif equip_slot==7:
-									weapon_set.append(j)
-								elif equip_slot==6:
-									weapon_set.append(j)
-						armor_set=armor_equip_order(armor_set,i)
-						for c in armor_set:
-							i.equipit(True, c)
-						for c in weapon_set:
-							i.equipit(False, c)
-				print("End of file.")
+					char_list[a].clear_equipment()
+				if len(loaded_equipment)>0:
+					for a in char_list:
+						i=char_list[a]
+						if loaded_equipment[a-1][0]==i.name:
+							armor_set=[]
+							weapon_set=[]
+							for b in range(1,len(loaded_equipment[a-1])-1):
+								equip_slot=b-1
+								j=int(loaded_equipment[a-1][b])
+								if equip_slot!=6 and equip_slot!=7:
+										armor_set.append(j)
+								else:
+									if loaded_equipment[a-1][7]==loaded_equipment[a-1][8] and int(loaded_equipment[a-1][7])!=0:
+										if int(loaded_equipment[a-1][7]) not in weapon_set:
+											weapon_set.append(int(loaded_equipment[a-1][7]))
+									elif equip_slot==7 and loaded_equipment[a-1][len(loaded_equipment[a-1])-1]=='shield':
+										armor_set.append(j)
+									elif equip_slot==7:
+										weapon_set.append(j)
+									elif equip_slot==6:
+										weapon_set.append(j)
+							armor_set=armor_equip_order(armor_set,i)
+							for c in armor_set:
+								i.equipit(True, c)
+							for c in weapon_set:
+								i.equipit(False, c)
+					print("End of file.")
+				else:
+					print("File was empty.")
 			else:
-				print("File was empty.")
+				print("No SAV files found.")
 	elif action_choice==7:	#END PROGRAM
 		print("Are you sure you want to end the program?")
 		if 'y'==yes_or_no():
@@ -3632,6 +3630,9 @@ def equip_weapon_set(weaps, char, auto):
 					combos_start=i
 					combos_found=True
 			i+=1
+	##Combos not found
+	if not combos_found:
+		combos_start=1000000
 	##MAKE NEW LISTS, 1 FOR EACH COMBO
 	new_weaps=[]
 	for a in weaps:
@@ -3762,16 +3763,12 @@ def print_weapon_set(weap_set, conflict_dict):
 				i+=2
 			else:
 				i+=1
-	##MARK IF SHIELD IS EQUIPPED
-	if equip_items[7]==0:
-		_shield=True
+	#Begin adding items to weapons
 	if type(weap_set[0]) is list:
-		i=0
-		for a in [6,7]:
-			equip_items[a]=weap_set[0][i]
-		i+=1
+		equip_items[6]=weap_set[0][0]
+		equip_items[7]=weap_set[0][1]
 	else:
-		if weapons[weap_set[0]][2]==2:
+		if int(weapons[weap_set[0]][2])==2:
 			equip_items[6]=weap_set[0]
 			equip_items[7]=weap_set[0]
 		else:
@@ -3838,7 +3835,7 @@ def print_weapon_set(weap_set, conflict_dict):
 	for a in range(1,len(abil_headers)):
 		if a<=6:
 			#equipment
-			if a not in [6,7]:
+			if a not in [7,8]:
 				row_str=equipment_headers[a-1]+': '+armor[equip_items[a-1]][0]
 				row_str=row_str.ljust(column_spaces[0],' ')+'|'
 			else:
@@ -3851,7 +3848,7 @@ def print_weapon_set(weap_set, conflict_dict):
 			row_str+=abil_headers[a]+': '+str(total_specials[1][a])
 		elif a<=11:
 			#equipment
-			if a not in [6,7]:
+			if a not in [7,8]:
 				row_str=equipment_headers[a-1]+': '+armor[equip_items[a-1]][0]
 				row_str=row_str.ljust(column_spaces[0],' ')+'|'
 			elif not _shield:
@@ -3879,7 +3876,7 @@ def print_weapon_set(weap_set, conflict_dict):
 			#Damage2 \ First column
 			if a==13:
 				conflict_print=False
-				if equip_items[6]!=equip_items[7] and not _shield:
+				if equip_items[6]!=equip_items[7] and not _shield and equip_items[7]!=0:
 					row_str='Raw Damage 2: '+str(weapons[equip_items[7]][3])
 					row_str=row_str.ljust(column_spaces[0],' ')
 					row_str+='|'
