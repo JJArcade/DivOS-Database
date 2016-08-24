@@ -802,7 +802,23 @@ def armor_max_open(char):
 	else:
 		print("All armour slots full, building sets from default slots.")
 	all_armors=get_all_equips(equipped)
-	armor_combos=armor_item_combos(all_armors, False)
+	armors_combos=armor_item_combos(all_armors, False)
+	if len(used_items.armors)>0:
+		print('Would you like to remove any items that have conflicts with other characters now?')
+		armor_combos=[]
+		if 'y'==yes_or_no():
+			for a in armors_combos:
+				set_good=True
+				for b in a:
+					if b in used_items.armors:
+						set_good=False
+				if set_good:
+					armor_combos.append(a)
+			print("New number of combinations: "+str(len(armor_combos)))
+		else:
+			armor_combos=armors_combos
+	else:
+		armor_combos=armors_combos
 	count=len(armor_combos)
 	##ADD ARMOUR RATING FROM COMBO TO LIST
 	for x in range(0,len(armor_combos)):
