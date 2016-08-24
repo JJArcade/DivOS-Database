@@ -1165,6 +1165,7 @@ def max_phys_damage(char, damage_type):
 			buff_damage=weapon_list[x][1]*(1+.1*singlehand_abil)
 			weapon_list[x].append(round(buff_damage,4))
 	##Calculate Dual Wielding equipped damage
+	i=0
 	for x in dual_wield_combos:
 		weapon_1=x[0][0]
 		weapon_2=x[0][1]
@@ -1178,18 +1179,18 @@ def max_phys_damage(char, damage_type):
 			current_dmg*=.8
 			current_dmg=round(current_dmg,3)
 			x.append(current_dmg)
-		elif dual_wield_combos==3:
+		elif dual_wield_abil==3:
 			current_dmg*=.9
 			current_dmg=round(current_dmg,3)
 			x.append(current_dmg)
-		elif dual_wield_combos==4 or dual_wield_combos==5:
+		elif dual_wield_abil==4 or dual_wield_abil==5:
 			current_dmg*=1
 			current_dmg=round(current_dmg,3)
 			x.append(current_dmg)
-		elif dual_wield_combos==6:
+		elif dual_wield_abil==6:
 			current_dmg*=1.05
 			current_dmg=round(current_dmg,3)
-			x.append(current_dmg)	
+			x.append(current_dmg)
 	##GO THROUGH BEST WEAPONS AND CHECK IF IT'S EQUIPABLE
 	for x in weapon_list:
 		weap=x[0]
@@ -3739,7 +3740,7 @@ def equip_weapon_set(weaps, char, auto):
 				if 'y'==yes_or_no():
 					equip_done=True
 					print("Enter the number of the set you would like to equip.")
-					set_choice=number_select(print_end-1)-1
+					set_choice=number_select(print_end)-1
 					curr_set=new_weaps[set_choice]
 					if set_choice in conflict_sets:
 						for a in conflict_sets[set_choice]:
@@ -4359,13 +4360,13 @@ class player:
 					elif dual_wield_abil==1 or dual_wield_abil==2:
 						dmg_lo*=.8
 						dmg_hi*=.8
-					elif dual_wield_combos==3:
+					elif dual_wield_abil==3:
 						dmg_lo*=.9
 						dmg_hi*=.9
-					elif dual_wield_combos==4 or dual_wield_combos==5:
+					elif dual_wield_abil==4 or dual_wield_abil==5:
 						dmg_lo*=1
 						dmg_hi*=1
-					elif dual_wield_combos==6:
+					elif dual_wield_abil==6:
 						dmg_lo*=1.05
 						dmg_hi*=1.05
 				#ONLY ONE WEAPON HAS PHYS DAMAGE
