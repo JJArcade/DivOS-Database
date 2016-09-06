@@ -1667,13 +1667,13 @@ def max_elem_damage(char, element_type):
 					elif dual_wield_abil==1 or dual_wield_abil==2:
 						dual_dam_elem*=.8
 						dual_dam_elem=round(dual_dam_elem,3)
-					elif dual_wield_combos==3:
+					elif dual_wield_abil==3:
 						dual_dam_elem*=.9
 						dual_dam_elem=round(dual_dam_elem,3)
-					elif dual_wield_combos==4 or dual_wield_combos==5:
+					elif dual_wield_abil==4 or dual_wield_abil==5:
 						dual_dam_elem*=1
 						dual_dam_elem=round(dual_dam_elem,3)
-					elif dual_wield_combos==6:
+					elif dual_wield_abil==6:
 						dual_dam_elem*=1.05
 						dual_dam_elem=round(dual_dam_elem,3)
 				if x[2][0]==y[2][0]:
