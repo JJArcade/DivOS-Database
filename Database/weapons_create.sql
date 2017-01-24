@@ -1,1 +1,26 @@
-CREATE TABLE "weapons" ( `weapon_id` TEXT NOT NULL, `DamageLo` INTEGER, `DamageHi` INTEGER, `CriticalDamage` INTEGER, `Element1DamageLo` INTEGER, `Element1DamageHi` INTEGER, `Element2DamageLo` INTEGER, `Element2DamageHi` INTEGER, `ItemName` TEXT NOT NULL, `Type` TEXT, `Hands` INTEGER NOT NULL, `CriticalChance` INTEGER, `Element1` TEXT, `Element2` TEXT, `Rarity` INTEGER NOT NULL, `Value` INTEGER NOT NULL, `Requirements` TEXT, `Level` INTEGER NOT NULL, `Range` REAL, `Special1` TEXT, `Special2` TEXT, `Special3` TEXT, `Special4` TEXT, PRIMARY KEY(`weapon_id`) )
+CREATE TABLE `weapons` (
+	`weapon_id`	TEXT NOT NULL,
+	`DamageLo`	INTEGER,
+	`DamageHi`	INTEGER,
+	`CriticalDamage`	INTEGER,
+	`Element1DamageLo`	INTEGER,
+	`Element1DamageHi`	INTEGER,
+	`Element2DamageLo`	INTEGER,
+	`Element2DamageHi`	INTEGER,
+	`ItemName`	TEXT NOT NULL,
+	`Type`	TEXT,
+	`Hands`	INTEGER NOT NULL,
+	`CriticalChance`	INTEGER,
+	`Element1`	TEXT,
+	`Element2`	TEXT,
+	`Rarity`	INTEGER NOT NULL,
+	`Value`	INTEGER NOT NULL,
+	`Requirements`	TEXT,
+	`Level`	INTEGER NOT NULL,
+	`Range`	REAL,
+	`Special1`	TEXT,
+	`Special2`	TEXT,
+	`Special3`	TEXT,
+	`Special4`	TEXT,
+	PRIMARY KEY(`weapon_id`)
+);
