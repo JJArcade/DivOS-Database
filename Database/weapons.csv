@@ -1,0 +1,101 @@
+weapon_id,Damage Lo,Damage Hi,Critical Damage,Element 1 Damage Lo,Element 1 Damage Hi,Element 2 Damage Lo,Element 2 Damage Hi,Item Name,Type,Hands,Critical Chance,Element 1,Element 2,Rarity,Value,Requirements,Level,Range,Special 1,Special 2,Special 3,Special 4
+w1,53,68,220,/N,/N,/N,/N,Outdated Executioners Sword,Slashing,2,/N,/N,/N,Common,117,Str 7,4,4,/N,/N,/N,/N
+w2,58,86,220,/N,/N,/N,/N,Curved Sword,Slashing,1,/N,/N,/N,Common,214,Str 8,11,2.83,/N,/N,/N,/N
+w3,58,86,220,8,13,/N,/N,Leaders Curved Sword of Smashing,Slashing,1,0.07,Water,/N,Epic,931,Str 8,11,2.83,1+ Leadership,15% Chilled, 2 turns,/N
+w4,89,116,220,/N,/N,/N,/N,Leaders Sharp Executioners Sword of Loyalty,Slashing,2,/N,/N,/N,Rare,679,Str 8,8,4,1+ Willpower,1+ Leadership,/N,/N
+w5,38,65,200,/N,/N,/N,/N,Hand Crafted Sword,Slashing,1,/N,/N,/N,Common,198,Str 9,6,2.83,/N,/N,/N,/N
+w6,19,28,200,/N,/N,/N,/N,Short Sword,Slashing,1,/N,/N,/N,Common,66,Str 5,2,2.83,/N,/N,/N,/N
+w7,11,16,200,/N,/N,/N,/N,Pan,Crushing,1,/N,/N,/N,Common,1,Str 5,1,2.83,/N,/N,/N,/N
+w8,36,71,200,/N,/N,/N,/N,Mandolin,Crushing,1,/N,/N,/N,Common,1,Str 5,9,2.83,10% Knocked Down, 1 Turn,/N,/N
+w9,11,16,200,/N,/N,/N,/N,Hammer,Crushing,1,/N,/N,/N,Common,1,Str 5,1,2.83,/N,/N,/N,/N
+w10,11,16,200,/N,/N,/N,/N,Branch,Crushing,1,/N,/N,/N,Common,1,Str 5,1,2.83,/N,/N,/N,/N
+w11,11,17,200,/N,/N,/N,/N,Branch,Crushing,1,/N,/N,/N,Common,1,Str 6,1,2.83,/N,/N,/N,/N
+w12,31,70,200,/N,/N,/N,/N,Clobbering Time,Crushing,1,0.03,/N,/N,Unique,540,Str 6,5,2.83,1+ Strength,1+ Shield Specialist,15% Knocked Down, 2 turns
+w13,18,45,200,/N,/N,/N,/N,Pick Axe,Piercing,1,/N,/N,/N,Common,1,Str 5,6,2.83,/N,/N,/N,/N
+w14,/N,/N,220,35,69,/N,/N,Adventurers Staff: Base Kit,Magic,2,/N,Air,/N,Unique,50,Int 7,5,4,/N,/N,/N,/N
+w15,/N,/N,220,32,63,/N,/N,Fatal Outdated Air Staff of the Doctor,Magic,2,/N,Air,/N,Rare,261,Int 6,5,4,11+ HP,/N,/N,/N
+w16,/N,/N,220,40,80,/N,/N,Devoted Glowing Metal Air Staff of Destruction,Magic,2,/N,Air,/N,Rare,504,Int 6,7,4,1+ Willpower,/N,/N,/N
+w17,/N,/N,220,62,124,/N,/N,Curing Exceptional Earth Staff of Destruction,Magic,2,/N,Earth,/N,Rare,624,Int 8,12,4,58+ HP,/N,/N,/N
+w18,33,56,200,/N,/N,/N,/N,Elm Shortbow,Piercing,2,/N,/N,/N,Common,188,Dex 6,5,22,/N,/N,/N,/N
+w19,58,100,200,9,14,/N,/N,Maiming Decorative Longbow of Destruction,Piercing,2,/N,Fire,/N,Rare,779,Dex 8,8,22,30% Bleeding, 3 Turns,/N,/N
+w20,57,97,200,/N,/N,/N,/N,Superior Lonbow,Piercing,2,/N,/N,/N,Common,375,Dex 9,10,22,/N,/N,/N,/N
+w21,65,113,200,13,23,/N,/N,Infected Decorative Yew Longbow of Loyalty,Piercing,2,/N,Earth,/N,Epic,1051,Dex 9,12,22,1+ Willpower,20% Slowed, 2 Turns,/N
+w22,61,105,200,12,21,/N,/N,Leaders Antique Yew Longbow of the Geomancer,Piercing,2,0.06,Earth,/N,Epic,1170,Dex 9,11,22,1+ Leadership,20% Slowed, 2 Turns,/N
+w23,69,119,200,/N,/N,/N,/N,Yew Longbow,Piercing,2,/N,/N,/N,Common,488,Dex 10,13,22,/N,/N,/N,/N
+w24,44,75,200,7,11,/N,/N,Freezing Hazel Shortbow of Bloodlust,Piercing,2,/N,Water,/N,Uncommon,387,Dex 7,6,22,15% Chilled, 2 Turns,/N,/N
+w25,38,65,200,/N,/N,/N,/N,Hazel Shortbow,Piercing,2,/N,/N,/N,Common,225,Dex 7,6,22,/N,/N,/N,/N
+w26,62,96,220,/N,/N,/N,/N,Brutal Heavier Crossbow of the Doctor,Piercing,2,/N,/N,/N,Uncommon,361,Dex 8,6,26,0.3- Movement,13+ HP,/N,/N
+w27,74,117,220,/N,/N,/N,/N,Maiming Steel Crossbow of the Vandal,Piercing,2,0.04,/N,/N,Rare,774,Dex 9,9,26,0.45- Movement,30% Bleeding, 3 Turns,/N
+w28,89,139,220,13,21,/N,/N,Monstrous Steel Crossbow of the Geomancer,Piercing,2,0.04,Earth,/N,Epic,779,Dex 9,8,26,0.4- Movement,10% Slowed, 2 Turns,/N
+w29,74,117,220,74,117,/N,/N,Steel Crossbow,Piercing,2,/N,/N,/N,Common,366,Dex 9,9,26,0.45- Movement,/N,/N,/N
+w30,68,106,220,68,106,/N,/N,Steel Crossbow,Piercing,2,/N,/N,/N,Common,325,Dex 9,8,26,0.4- Movement,/N,/N,/N
+w31,54,84,220,10,16,/N,/N,Sub-Zero Heavier Crossbow of Vitality,Piercing,2,/N,Water,/N,Rare,397,Dex 8,6,26,0.3- Movement,23+ HP,25% Chilled, 2 Turns
+w32,54,84,220,/N,/N,/N,/N,Thrasing Heavier Crossbow of the Doctor,Piercing,2,0.04,/N,/N,Uncommon,361,Dex 8,6,26,0.3- Movement,13+ HP,/N,/N
+w33,102,160,220,/N,/N,/N,/N,Fatal Outdated Arbalest of the Vandal,Piercing,2,0.04,/N,/N,Rare,744,Dex 9,10,26,0.5- Movement,/N,/N,/N
+w34,98,153,220,/N,/N,/N,/N,Grand Outdated Arbalest of Mangling,Piercing,2,0.05,/N,/N,Rare,744,Dex 9,10,26,0.5- Movement,/N,/N,/N
+w35,94,147,220,/N,/N,/N,/N,Old Arbalest,Piercing,2,/N,/N,/N,Common,487,Dex 10,12,26,0.55- Movement,/N,/N,/N
+w36,3,8,220,/N,/N,/N,/N,White Fishing Rod,Piercing,2,/N,/N,/N,Common,1,Str 1,1,6,/N,/N,/N,/N
+w37,3,8,220,/N,/N,/N,/N,Yellow Fishing Rod,Piercing,2,/N,/N,/N,Common,1,Str 1,1,6,/N,/N,/N,/N
+w38,6,11,200,/N,/N,/N,/N,Bloody Dagger,Piercing,1,/N,/N,/N,Common,16,Dex 5,1,2.83,/N,/N,/N,/N
+w39,26,43,200,/N,/N,/N,/N,Hand-Crafted Dagger,Piercing,1,/N,/N,/N,Common,162,Dex 8,6,2.83,/N,/N,/N,/N
+w40,35,58,200,6,10,/N,/N,Leaders Noble Push Dagger of the Geomancer,Piercing,1,/N,Water,/N,Legendary,827,Dex 7,9,2.83,1+ Leadership,0.45+ Movement,25% Chilled, 2 Turns
+w41,21,35,200,4,6,/N,/N,Blazing rondel Dagger of Mangling,Piercing,1,0.04,Fire,/N,Rare,224,Dex 5,5,2.83,20% Burning, 2 Turns,/N,/N
+w42,21,35,200,/N,/N,/N,/N,Thrashing Rondel Dagger of the Doctor,Piercing,1,0.04,/N,/N,Uncommon,166,Dex 5,5,2.83,11+ HP,/N,/N,/N
+w43,29,48,200,/N,/N,/N,/N,Maiming Sharp Long Dagger of Escaping,Piercing,1,/N,/N,/N,Rare,479,Dex 7,10,2.83,0.5+ Movement,30% Bleeding, 3 Turns,/N
+w44,33,55,200,/N,/N,/N,/N,Baselard,Piercing,1,/N,/N,/N,Common,162,Dex 8,12,2.83,/N,/N,/N,/N
+w45,35,58,200,/N,/N,/N,/N,Hurtful Rapier of Expertise,Piercing,1,0.07,/N,/N,Rare,521,Dex 8,13,2.83,0.7+ Movement,/N,/N,/N
+w46,/N,/N,200,31,51,/N,/N,Petrifying Fine Wooden Air Wand of Bloodthirst,Magic,1,/N,Air,/N,Rare,598,Int 5,6,16,10% Petrified, 1 Turn,Headvice,# of uses 3
+w47,/N,/N,200,21,34,/N,/N,Antique Wooden Water Wand,Magic,1,/N,Water,/N,Common,216,Int 5,4,16,Ice Shard,# of uses 2,/N,/N
+w48,/N,/N,200,42,70,/N,/N,Hard Clawed Earth Wand,Magic,1,/N,Earth,/N,Common,540,Int 6,10,16,Magical Poison Dart,# of uses 3,/N,/N
+w49,/N,/N,200,42,69,/N,/N,Unbreakable Elegant Clawed Earth Wand of the Tyrant,Magic,1,/N,Earth,/N,Rare,805,Int 5,8,16,Unbreakable,Magical Poison Dart,# of uses 3,/N
+w50,/N,/N,200,32,53,/N,/N,Delicate Wooden Water Wand,Magic,1,/N,Water,/N,Common,378,Int 5,7,16,Water of Life,# of uses 3,/N,/N
+w51,5,10,200,/N,/N,/N,/N,Shears,Piercing,1,/N,/N,/N,Common,2,Dex 5,1,2.83,/N,/N,/N,/N
+w52,106,154,220,/N,/N,/N,/N,Adventurers Axe Base II,Slashing,2,/N,/N,/N,Unique,110,Str 10,10,4,15% Crippled, 2 Turns,/N,/N
+w53,15,25,200,/N,/N,/N,/N,Dagger,Piercing,1,/N,/N,/N,Common,41,Dex 5,3,2.83,/N,/N,/N,/N
+w54,27,45,200,/N,/N,/N,/N,Sharp Push Dagger,Piercing,1,/N,/N,/N,Common,108,Dex 6,8,2.83,/N,/N,/N,/N
+w55,29,47,200,/N,/N,/N,/N,Noble Push Dagger,Piercing,1,/N,/N,/N,Common,122,Dex 7,9,2.83,/N,/N,/N,/N
+w56,29,47,200,/N,/N,/N,/N,Noble Push Dagger,Piercing,1,/N,/N,/N,Common,122,Dex 7,9,2.83,/N,/N,/N,/N
+w57,23,38,200,/N,/N,/N,/N,Light Sharp Rondel Dagger of the Doctor,Piercing,1,/N,/N,/N,Uncommon,153,Dex 6,6,2.83,0.3+ Movement,13+ HP,/N,/N
+w58,8,13,200,/N,/N,/N,/N,Pocket Knife,Piercing,1,/N,/N,/N,Common,1,Dex 5,1,2.83,/N,/N,/N,/N
+w59,28,47,200,4,7,4,7,Sea Spiders Claw,Piercing,1,0.05,Water,Poison,Unique,1410,Dex 6,7,2.83,15% Chilled, 2 Turns,15% Poisoned, 2 Turns
+w60,/N,/N,/N,28,56,/N,/N,Shambling Oak Death Want,Magic,1,/N,Water,/N,Common,149,Int 9,11,16,Irreparable,Shambling Oak Removal,# of uses 2,/N
+w61,/N,/N,200,28,46,/N,/N,Fine Wooden Fire Wand,Magic,1,/N,Fire,/N,Common,316,Int 5,6,16,Fireball,# of Uses 1,/N,/N
+w62,/N,/N,200,32,53,/N,/N,Dazzling Delicate Wooden Air Wand,Magic,1,/N,Air,/N,Epic,857,Int 5,7,16,15% Blinded, 2 Turns,Thunder Jump,# of uses 3
+w63,/N,/N,200,39,65,/N,/N,Dazzling Elegant Clawed Air Wand of Bloodthirst,Magic,1,/N,Air,/N,Rare,721,Int 5,8,16,15% Blinded, 2 Turns,Thunder Jump,# of uses 3
+w64,/N,/N,200,37,61,/N,/N,Curing Delicate Wooden Earth Wand of Disfigurement,Magic,1,/N,Earth,/N,Rare,567,Int 5,7,16,26+ HP,Magical Poison Dart,# of uses 3,/N
+w65,/N,/N,200,46,76,/N,/N,Dazzling Strong Clawed Water Wand of the Vandal,Magic,1,0.04,Water,/N,Rare,1108,Int 6,11,16,15% Blinded, 2 Turns,Water of Life,# of uses 3
+w66,44,75,200,7,11,/N,/N,Shocking Hazel Shortbow of Bloodlust,Piercing,2,/N,Air,/N,Uncommon,381,Dex 7,6,22,10% Stunned, 1 Turn,/N,/N
+w67,44,64,200,/N,/N,/N,/N,Hard Wooden Club,Crushing,1,/N,/N,/N,Common,139,Str 7,8,2.83,/N,/N,/N,/N
+w68,18,25,200,/N,/N,/N,/N,Blackjack,Crushing,1,/N,/N,/N,Common,35,Str 5,2,2.83,/N,/N,/N,/N
+w69,43,74,200,7,11,/N,/N,Curing Oak Flat Bow of Ice,Piercing,2,/N,Water,/N,Rare,402,Dex 7,7,22,26+ HP,15% Chilled, 2 turns,/N
+w70,28,48,200,/N,/N,/N,/N,Bairdotrs Bow,Piercing,2,/N,/N,/N,Common,145,Dex 6,4,22,/N,/N,/N,/N
+w71,24,38,200,/N,/N,/N,/N,Light Crossbow,Piercing,2,/N,/N,/N,Common,82,Dex 5,2,26,0.15- Movement,/N,/N,/N
+w72,15,25,200,/N,/N,/N,/N,Dagger,Piercing,1,/N,/N,/N,Common,41,Dex 5,3,2.83,/N,/N,/N,/N
+w73,/N,/N,200,21,34,/N,/N,Thrashing Antique Wooden Air Wand of the Doctor,Magic,1,0.04,Air,/N,Uncommon,294,Int 5,4,16,9+ HP,Headvice,# of uses 3,/N
+w74,/N,/N,200,42,70,/N,/N,Thrashing Hard Clawed Water Wand of Vitality,Magic,1,0.05,Water,/N,Rare,809,Int 6,10,16,35+ HP,Water of Life,# of uses 3,/N
+w75,49,84,200,8,12,/N,/N,Stout Bearded Axe of the Geomancer,Slashing,1,/N,Earth,/N,Rare,633,Str 8,8,2.83,10% Knocked Down, 1 Turn,10% Slowed, 2 Turns
+w76,19,33,200,/N,/N,/N,/N,Crippling Shepherds Axe of Bloodthirst,Slashing,1,/N,/N,/N,Uncommon,119,Str 5,2,2.83,15% Crippled, 3 Turns,/N,/N
+w77,/N,/N,200,20,39,/N,/N,Brutal Old Elvish Water Staff of the Doctor,Magic,2,/N,Water,/N,Uncommon,143,Int 5,3,4,7+ HP,/N,/N,/N
+w78,/N,/N,200,25,50,/N,/N,Outdated Air Staff,Magic,2,/N,Air,/N,Common,139,Int 6,5,4,/N,/N,/N,/N
+w79,15,30,200,/N,/N,/N,/N,Studded Golden Dagger,Piercing,1,/N,/N,/N,Common,177,Dex 5,7,2.83,/N,/N,/N,/N
+w80,29,48,200,/N,/N,/N,/N,Salved Old Push Dagger of Desecration,Piercing,1,/N,/N,/N,Uncommon,225,Dex 6,7,2.83,15+ HP,/N,/N,/N
+w81,27,45,200,/N,/N,/N,/N,Sharp Push Dagger,Piercing,1,/N,/N,/N,Common,108,Dex 6,8,2.83,/N,/N,/N,/N
+w82,27,45,200,5,8,/N,/N,Unbreakable Sharp Push Dagger of Storms,Piercing,1,/N,Earth,/N,Rare,449,Dex 6,8,2.83,20% Slowed, 2 Turns,/N,/N
+w83,29,47,200,5,8,/N,/N,Unbreakable Noble Push Dagger of the Firebrand,Piercing,1,/N,Fire,/N,Rare,506,Dex 7,9,2.83,20% Burning, 2 Turns,/N,/N
+w84,19,31,200,3,5,/N,/N,Burning Poniard of the Doctor,Piercing,1,/N,Fire,/N,Uncommon,132,Dex 5,4,2.83,9+ HP,10% Burning, 2 Turns,/N
+w85,23,38,200,/N,/N,/N,/N,Harmful Sharp Rondel Dagger of the Doctor,Piercing,1,0.03,/N,/N,Uncommon,198,Dex 6,6,2.83,13+ HP,/N,/N,/N
+w86,26,43,200,/N,/N,/N,/N,Light Sharp Rondel Dagger of Descration,Piercing,1,/N,/N,/N,Uncommon,198,Dex 6,6,2.83,0.3+ Movement,/N,/N,/N
+w87,21,35,200,/N,/N,/N,/N,Rondel Dagger,Piercing,1,/N,/N,/N,Common,68,Dex 5,5,2.83,/N,/N,/N,/N
+w88,23,38,200,/N,/N,/N,/N,Sharp Rondel Dagger,Piercing,1,/N,/N,/N,Common,81,Dex 6,6,2.83,/N,/N,/N,/N
+w89,23,38,200,/N,/N,/N,/N,Sharp Rondel Dagger,Piercing,1,/N,/N,/N,Common,81,Dex 6,6,2.83,/N,/N,/N,/N
+w90,29,48,200,5,8,/N,/N,Sub-Zero Sharp Long Dagger of Vitality,Piercing,1,/N,Air,/N,Rare,333,Dex 7,10,2.83,35+ HP,20% Stunned, 1 Turns,/N
+w91,15,24,200,/N,/N,/N,/N,Wolgraffs Dagger,Piercing,1,/N,/N,/N,Unique,82,Dex 5,3,2.83,/N,/N,/N,/N
+w92,15,24,200,/N,/N,/N,/N,Wolgraffs Other Dagger,Piercing,1,/N,/N,/N,Unique,82,Dex 5,3,2.83,/N,/N,/N,/N
+w93,/N,/N,200,25,40,/N,/N,Fine Wooden Air Wand,Magic,1,/N,Air,/N,Common,213,Int 5,5,16,Headvice,# of uses 2,/N,/N
+w94,/N,/N,200,28,46,/N,/N,Fine Wooden Fire Wand,Magic,1,/N,Fire,/N,Common,324,Int 5,6,16,Fireball,# of Uses 1,/N,/N
+w95,/N,/N,200,13,21,/N,/N,Old Wooden Water Wand,Magic,1,/N,Water,/N,Common,108,Int 5,2,16,Ice Shard,# of uses 3,/N,/N
+w96,/N,/N,200,46,76,/N,/N,Petrifying Strong Clawed Air Wand of the Colossus,Magic,1,/N,Air,/N,Epic,1346,Int 6,11,16,10% Petrified, 1 Turn,10% Knocked Down, 1 Turn
+w97,/N,/N,200,32,53,/N,/N,Delicate Wooden Earth Wand,Magic,1,/N,Earth,/N,Common,378,Int 5,7,16,Magical Poison Dart,# of uses 3,/N,/N
+w98,/N,/N,200,39,65,/N,/N,Nice Clawed Earth Wand,Magic,1,/N,Earth,/N,Common,486,Int 5,9,16,Magical Poison Dart,# of uses 2,/N,/N
+w99,/N,/N,200,39,65,/N,/N,Nice Clawed Water Wand,Magic,1,/N,Water,/N,Common,486,Int 5,9,16,Water of Life,# of uses 3,/N,/N
+w100,/N,/N,200,35,58,/N,/N,Savage Delicate Wooden Water Wand of the Vandal,Magic,1,0.04,Water,/N,Uncommon,518,Int 5,7,16,/N,/N,/N,/N
