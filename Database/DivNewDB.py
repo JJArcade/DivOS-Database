@@ -36,6 +36,47 @@ def weapon_type_select():
 
 #Armor builder
 def armor_buliding(character):
+	#Armor lists
+	Helmets=[]
+	Boots=[]
+	Chest=[]
+	Gloves=[]
+	#Get armors that don't have requirements
+	curr.execute("SELECT armor_id, type, armor_rating FROM armor_main where requirement_name is Null ORDER BY type")
+	easy_armor=curr.fetchall()
+	for b in easy_armor:
+		if b[1]=="Boots":
+			Boots.append([b[0],b[2])
+		elif b[1]=="Chest":
+			Chest.append(b[0],b[2])
+		elif b[1]=="Gloves":
+			Gloves.append(b[0],b[2])
+		elif b[1]=="Helmet":
+			Helmets.append(b[0],b[2])
+	#Store attr. requirements from armors to a list
+	curr.execute("SELECT requirement_name FROM armor_main WHERE requirement_name NOT NULL GROUP BY requirement_name")
+	req_names=[]
+	for a in curr:
+		req_names.append(a[0])
+	#get armors within range
+	for a in req_names:
+		char_query="SELECT %s FROM attributes WHERE Name=\'%s\'" % [a,character]
+		armors_query="SELECT armor_id, type,armor_rating FROM armor_main WHERE requirement_name=\'%s\' AND requirement_level<=(%s) GROUP BY type" % [a,char_query]
+		curr.execute(armors_query)
+		selections=curr.fetchall()
+		for b in selections:
+			if b[1]=="Boots":
+				Boots.append([b[0],b[2])
+			elif b[1]=="Chest":
+				Chest.append(b[0],b[2])
+			elif b[1]=="Gloves":
+				Gloves.append(b[0],b[2])
+			elif b[1]=="Helmets":
+				Helmet.append(b[0],b[2])
+	#start armor building
+	
+#combo generator
+def combo_maker_plain(lists):
 	
 #number selection
 def num_select(no_choices):
