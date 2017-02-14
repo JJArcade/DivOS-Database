@@ -35,8 +35,8 @@ def weapon_type_select():
 	quit()
 
 #Armor builder
-def armor_buliding(character)
-
+def armor_buliding(character):
+	
 #number selection
 def num_select(no_choices):
 	print("Please enter only the number from the selections above: ")
