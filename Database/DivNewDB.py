@@ -13,7 +13,10 @@ import sqlite3
 
 def __main__():
 	#This is the main program area
-	weapon_type_select()
+	#weapon_type_select()
+	armor_building("Leon")
+	input("press enter to end")
+	quit()
 	return
 	
 #Connect to database
@@ -35,7 +38,7 @@ def weapon_type_select():
 	quit()
 
 #Armor builder
-def armor_buliding(character):
+def armor_building(character):
 	#Armor lists
 	Helmets=[]
 	Boots=[]
@@ -46,13 +49,13 @@ def armor_buliding(character):
 	easy_armor=curr.fetchall()
 	for b in easy_armor:
 		if b[1]=="Boots":
-			Boots.append([b[0],b[2])
+			Boots.append([b[0],b[2]])
 		elif b[1]=="Chest":
-			Chest.append(b[0],b[2])
+			Chest.append([b[0],b[2]])
 		elif b[1]=="Gloves":
-			Gloves.append(b[0],b[2])
+			Gloves.append([b[0],b[2]])
 		elif b[1]=="Helmet":
-			Helmets.append(b[0],b[2])
+			Helmets.append([b[0],b[2]])
 	#Store attr. requirements from armors to a list
 	curr.execute("SELECT requirement_name FROM armor_main WHERE requirement_name NOT NULL GROUP BY requirement_name")
 	req_names=[]
@@ -60,24 +63,58 @@ def armor_buliding(character):
 		req_names.append(a[0])
 	#get armors within range
 	for a in req_names:
-		char_query="SELECT %s FROM attributes WHERE Name=\'%s\'" % [a,character]
-		armors_query="SELECT armor_id, type,armor_rating FROM armor_main WHERE requirement_name=\'%s\' AND requirement_level<=(%s) GROUP BY type" % [a,char_query]
+		char_query="SELECT %s FROM attributes WHERE Name=\'%s\'" % (a,character)
+		armors_query="SELECT armor_id, type,armor_rating FROM armor_main WHERE requirement_name=\'%s\' AND requirement_level<=(%s) GROUP BY type" % (a,char_query)
 		curr.execute(armors_query)
 		selections=curr.fetchall()
 		for b in selections:
 			if b[1]=="Boots":
-				Boots.append([b[0],b[2])
+				Boots.append([b[0],b[2]])
 			elif b[1]=="Chest":
-				Chest.append(b[0],b[2])
+				Chest.append([b[0],b[2]])
 			elif b[1]=="Gloves":
-				Gloves.append(b[0],b[2])
+				Gloves.append([b[0],b[2]])
 			elif b[1]=="Helmets":
-				Helmet.append(b[0],b[2])
+				Helmets.append([b[0],b[2]])
 	#start armor building
+	combo_maker_plain([Helmets,Chest,Boots,Gloves])
 	
 #combo generator
 def combo_maker_plain(lists):
-	
+	items={}
+	armor_types=[]
+	for a in range(0,len(lists)):
+		curr.execute("SELECT type from armor_main where armor_id=\'%s\'" % lists[a][0][0])
+		temp=curr.fetchall()
+		armor_type=temp[0][0]
+		items[a]=lists[a]
+		armor_types.append(armor_type)
+	print(armor_types)
+	#calculate total number of combos
+	no_combos=1
+	for a in items:
+		no_combos*=len(items[a])
+	print("There are %d number of combos." % no_combos)
+	list_frequency=no_combos
+	curr.execute("DELETE FROM armor_builds")
+	#for a in range(0,no_combos):
+	for b in items:
+		list_frequency/=len(items[b])
+		parts=items[b]
+		for c in parts:
+			if b==0:
+				set_id=1
+				for d in range(0,int(list_frequency)):
+					insert_query="INSERT INTO armor_builds set_id, %s values(%d,\'%s\')" % (armor_types[b],set_id,c)
+					curr.execute(insert_query)
+					set_id+=1
+			else:
+				set_id=1
+				for d in range(0,int(list_frequency)):
+					update_query="UPDATE armor_builds SET %s = %s WHERE set_id=%d" % (armor_types[b],c,set_id)
+					set_id+=1
+	conn.commit()
+
 #number selection
 def num_select(no_choices):
 	print("Please enter only the number from the selections above: ")
