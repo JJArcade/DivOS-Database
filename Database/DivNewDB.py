@@ -18,9 +18,11 @@ def __main__():
 	input("press enter to end")
 	quit()
 	return
-	
+
 #Connect to database
-conn = sqlite3.connect(abspath(curdir)+"/Divinity.db")
+#conn = sqlite3.connect(abspath(curdir)+"/Divinity.db")
+print(abspath(curdir)+"\\Database\\Divinity.db")
+conn = sqlite3.connect(abspath(curdir)+"\\Database\\Divinity.db")
 curr = conn.cursor()
 
 curr.execute("SELECT * FROM Abilities")
@@ -78,7 +80,7 @@ def armor_building(character):
 				Helmets.append([b[0],b[2]])
 	#start armor building
 	combo_maker_plain([Helmets,Chest,Boots,Gloves])
-	
+
 #combo generator
 def combo_maker_plain(lists):
 	items={}
@@ -100,19 +102,25 @@ def combo_maker_plain(lists):
 	#for a in range(0,no_combos):
 	for b in items:
 		list_frequency/=len(items[b])
+		print(list_frequency)
+		print(b)
+		print(items[b])
+		#input("press enter to continue")
 		parts=items[b]
+		set_id=1
 		for c in parts:
 			if b==0:
-				set_id=1
 				for d in range(0,int(list_frequency)):
-					insert_query="INSERT INTO armor_builds set_id, %s values(%d,\'%s\')" % (armor_types[b],set_id,c)
+					insert_query="INSERT INTO armor_builds (set_id, %s) values(%d,\'%s\')" % (armor_types[b],set_id,c[0])
+					#print(c)
+					#print(insert_query)
 					curr.execute(insert_query)
 					set_id+=1
 			else:
-				set_id=1
 				for d in range(0,int(list_frequency)):
-					update_query="UPDATE armor_builds SET %s = %s WHERE set_id=%d" % (armor_types[b],c,set_id)
+					update_query="UPDATE armor_builds SET %s = %s WHERE set_id=%d" % (armor_types[b],c[0],set_id)
 					set_id+=1
+			conn.commit()
 	conn.commit()
 
 #number selection
