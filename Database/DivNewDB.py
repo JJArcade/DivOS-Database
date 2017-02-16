@@ -14,6 +14,7 @@ import sqlite3
 def __main__():
 	#This is the main program area weapon_type_select()
 	armor_building("Leon")
+	accessory_builder()
 	input("press enter to end")
 	quit()
 	return
@@ -85,8 +86,23 @@ def armor_building(character):
 			insert_query="INSERT INTO temp_armors (id, type, armor_rating) VALUES(\'%s\',\'%s\',%d)" % tuple(b)
 			print(insert_query)	
 			#input("Press enter to continue")'''
-			#input("Press enter to continue")'''
 	combo_maker_plain([Helmets,Chest,Boots,Gloves])
+
+#build permutations of accessories
+def accessory_builder():
+	#get accessories
+	curr.execute("SELECT accs_id FROM accessory_main WHERE type=\'Accessory\'")
+	accs=curr.fetchall()
+	#create temp table hold
+	accs_perms=[]
+	for a in range(0,len(accs)):
+		for b in range(a+1,len(accs)):
+			accs_perms.append([accs[a][0],accs[b][0]])
+			print([accs[a][0],accs[b][0]]) #DEBUG LINE
+	return accs_perms
+
+#accessory buff calculations
+
 
 #combo generator
 def combo_maker_plain(lists):
