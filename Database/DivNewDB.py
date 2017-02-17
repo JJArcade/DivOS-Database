@@ -21,7 +21,8 @@ def __main__():
 
 #Connect to database
 conn = sqlite3.connect(abspath(curdir)+"/Divinity.db")
-#print(abspath(curdir)+"\\Database\\Divinity.db") conn = sqlite3.connect(abspath(curdir)+"\\Database\\Divinity.db")
+#print(abspath(curdir)+"\\Database\\Divinity.db") 
+#conn = sqlite3.connect(abspath(curdir)+"\\Database\\Divinity.db")
 curr = conn.cursor()
 
 curr.execute("SELECT * FROM Abilities") 
@@ -88,6 +89,9 @@ def armor_building(character):
 			#input("Press enter to continue")'''
 	combo_maker_plain([Helmets,Chest,Boots,Gloves])
 
+#physical weapon builder
+
+
 #build permutations of accessories
 def accessory_builder():
 	#get accessories
@@ -96,9 +100,9 @@ def accessory_builder():
 	#create temp table hold
 	accs_perms=[]
 	for a in range(0,len(accs)):
-		for b in range(a+1,len(accs)):
+		for b in wrange(a+1,len(accs)):
 			accs_perms.append([accs[a][0],accs[b][0]])
-			print([accs[a][0],accs[b][0]]) #DEBUG LINE
+			#print([accs[a][0],accs[b][0]]) #DEBUG LINE
 	return accs_perms
 
 #accessory buff calculations
