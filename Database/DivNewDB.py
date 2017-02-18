@@ -1,14 +1,14 @@
 #import necessary libraries
-import sys 
-import os.path 
-import os 
-from os.path import abspath, curdir 
-import csv 
-import re 
-import math 
-from math import ceil 
-import operator 
-import random 
+import sys
+import os.path
+import os
+from os.path import abspath, curdir
+import csv
+import re
+import math
+from math import ceil
+import operator
+import random
 import sqlite3
 
 def __main__():
@@ -21,11 +21,11 @@ def __main__():
 
 #Connect to database
 conn = sqlite3.connect(abspath(curdir)+"/Divinity.db")
-#print(abspath(curdir)+"\\Database\\Divinity.db") 
+#print(abspath(curdir)+"\\Database\\Divinity.db")
 #conn = sqlite3.connect(abspath(curdir)+"\\Database\\Divinity.db")
 curr = conn.cursor()
 
-curr.execute("SELECT * FROM Abilities") 
+curr.execute("SELECT * FROM Abilities")
 print(curr.fetchall())
 
 #Select weapon types
@@ -85,11 +85,21 @@ def armor_building(character):
 		curr.execute("CREATE TABLE temp_armors(id VARCHAR(50) NOT NULL PRIMARY KEY, type TEXT NOT NULL, armor_rating INT NOT NULL)")
 		for b in a:
 			insert_query="INSERT INTO temp_armors (id, type, armor_rating) VALUES(\'%s\',\'%s\',%d)" % tuple(b)
-			print(insert_query)	
-			#input("Press enter to continue")'''
+			print(insert_query)
+			#input("Press enter to continue")''''
 	combo_maker_plain([Helmets,Chest,Boots,Gloves])
 
 #physical weapon builder
+def weapon_build(weap_type, character):
+	reqs_get="SELECT requirement_name FROM weapon_main WHERE type=\'%s\' GROUP BY requirement_name" % weap_type
+	print(reqs_get)	#DEBUG LINE
+	curr.fetchall(reqs_get)
+	weap_reqs=curr.fetchall()
+	#GET CHAR equipement
+	weapons=[]
+	for a in weap_reqs:
+		char_lvl_get="(SELECT %s FROM attributes WHERE name=\'%s\')" % (character, a[0])
+		weap_get="SELECT weapon_id, hands FROM weapon_main WHERE type=\'%s\' AND requirement_name=\'%s\' AND requirement_level<=%d" % (weap_type, a[0], char_lvl_get)
 
 
 #build permutations of accessories
@@ -158,5 +168,5 @@ def num_select(no_choices):
 		print("Invalid input. \nPlease enter only the number of your selection from the choices above.")
 
 while True:
-	__main__() 
+	__main__()
 	quit()
