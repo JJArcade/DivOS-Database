@@ -12,9 +12,10 @@ import random
 import sqlite3
 
 def __main__():
-	#This is the main program area weapon_type_select()
+	#This is the main program area weapon_type_select()2
 	armor_building("Leon")
 	accessory_builder()
+	weapon_build("Piercing", "Leon")
 	input("press enter to end")
 	quit()
 	return
@@ -79,27 +80,39 @@ def armor_building(character):
 			elif b[1]=="Helmets":
 				Helmets.append(b)
 	#cut down size of lists
-	'''print(len(Helmets))
+	"""print(len(Helmets))
 	for a in [Helmets,Chest,Boots,Gloves]:
 		curr.execute("DROP TABLE IF EXISTS temp_armors")
 		curr.execute("CREATE TABLE temp_armors(id VARCHAR(50) NOT NULL PRIMARY KEY, type TEXT NOT NULL, armor_rating INT NOT NULL)")
 		for b in a:
 			insert_query="INSERT INTO temp_armors (id, type, armor_rating) VALUES(\'%s\',\'%s\',%d)" % tuple(b)
 			print(insert_query)
-			#input("Press enter to continue")''''
+			#input("Press enter to continue")'"""
 	combo_maker_plain([Helmets,Chest,Boots,Gloves])
 
 #physical weapon builder
 def weapon_build(weap_type, character):
 	reqs_get="SELECT requirement_name FROM weapon_main WHERE type=\'%s\' GROUP BY requirement_name" % weap_type
 	print(reqs_get)	#DEBUG LINE
-	curr.fetchall(reqs_get)
+	curr.execute(reqs_get)
 	weap_reqs=curr.fetchall()
 	#GET CHAR equipement
 	weapons=[]
+	curr.execute("DELETE FROM weapon_builds")
+	curr.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=\'weapon_builds\'")
 	for a in weap_reqs:
-		char_lvl_get="(SELECT %s FROM attributes WHERE name=\'%s\')" % (character, a[0])
-		weap_get="SELECT weapon_id, hands FROM weapon_main WHERE type=\'%s\' AND requirement_name=\'%s\' AND requirement_level<=%d" % (weap_type, a[0], char_lvl_get)
+		char_lvl_get="(SELECT %s FROM attributes WHERE name=\'%s\')" % (a[0], character)
+		weap_get="SELECT weapon_id, hands FROM weapon_main WHERE type=\'%s\' AND requirement_name=\'%s\' AND requirement_level<=%s" % (weap_type, a[0], char_lvl_get)
+		print(weap_get)	#DEBUG LINE
+		curr.execute(weap_get)
+		temp=curr.fetchall()
+		for b in temp:
+			insert_query="INSERT INTO weapon_builds (weapon) VALUES(\'%s\')" % b[0]
+			print(insert_query)	#Debug lin
+			curr.execute(insert_query)
+	conn.commit()
+
+
 
 
 #build permutations of accessories
@@ -110,7 +123,7 @@ def accessory_builder():
 	#create temp table hold
 	accs_perms=[]
 	for a in range(0,len(accs)):
-		for b in wrange(a+1,len(accs)):
+		for b in range(a+1,len(accs)):
 			accs_perms.append([accs[a][0],accs[b][0]])
 			#print([accs[a][0],accs[b][0]]) #DEBUG LINE
 	return accs_perms
