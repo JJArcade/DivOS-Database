@@ -1,17 +1,20 @@
 import urwid
 
-def exit_on_q(key):
-	if key in ('q','Q'):
-		raise urwid.ExitMainLoop()
+palette = [('I say', 'default,bold', 'default', 'bold'),]
+ask = urwid.Edit(('I say', "What is your name?\n"))
+reply = urwid.Text("")
+button = urwid.Button('Exit')
+div = urwid.Divider()
+pile = urwid.Pile([ask, div, reply, div, button])
+top = urwid.Filler(pile, valign='top')
 
-palette = [
-	('banner','black','light gray'),
-	('streak', 'black', 'dark red'),
-	('bg', 'black', 'dark blue'),]
+def on_ask_change(edit, new_edit_text):
+	reply.set_text(('I say', 'Nice to meet you, %s' % new_edit_text))
 
-txt=urwid.Text(('banner', "Hello World"),align='center')
-map1=urwid.AttrMap(txt, 'streak')
-fill=urwid.Filler(map1)
-map2=urwid.AttrMap(fill,'bg')
-loop=urwid.MainLoop(map2, palette, unhandled_input=exit_on_q)
-loop.run()
+def on_exit_clicked(button):
+	raise urwid.ExitMainLoop()
+
+urwid.connect_signal(ask, 'change', on_ask_change)
+urwid.connect_signal(button, 'click', on_exit_clicked)
+
+urwid.MainLoop(top, palette).run()
