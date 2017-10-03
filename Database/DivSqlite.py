@@ -3,16 +3,12 @@ import sys
 import os.path
 import sqlite3
 
-class DivSqlite(sqlite3):
+class divsqlite():
     
-    def __init__(self, path):
-        self.path = path
-        super().__init__()
-        self.initDB(path)
-        
-    def initDB(self, path):
-        self.conn = self.connect(path)
+    def __init__(self, database):
+        self.conn = sqlite3.connect(database)
         self.curr = self.conn.cursor()
+        print("Database connected!")
         
     #Armor builder
     def armor_building(self, character):
@@ -130,17 +126,6 @@ class DivSqlite(sqlite3):
 #conn = sqlite3.connect(abspath(curdir)+"\\Database\\Divinity.db")
 #curr = conn.cursor()
 
-
-
-
-
-
-
-#accessory buff calculations
-
-
-
-
 #number selection
 def num_select(no_choices):
     print("Please enter only the number from the selections above: ")
@@ -156,4 +141,6 @@ def num_select(no_choices):
                 return int(choice)
                 break
         print("Invalid input. \nPlease enter only the number of your selection from the choices above.")
+        
+#test loop
         
