@@ -2,6 +2,7 @@
 import sys
 import os.path
 import sqlite3
+import re
 
 class divsqlite():
     
@@ -119,6 +120,33 @@ class divsqlite():
                 accs_perms.append([accs[a][0],accs[b][0]])
                 #print([accs[a][0],accs[b][0]]) #DEBUG LINE
         return accs_perms
+    
+    def get_boosts(self, accs_list):
+        #get specials data
+            self.curr.execute("SELECT accs_id FROM accessory_main WHERE type=\'Accessory\'")
+            accs = self.curr.fetchall()
+            #restructure into a dictionary
+            for a in range(0,len(accs)):
+                accs[a]={"name": accs[a][0], "Strength": 0, "Dexterity": 0, "Intelligence": 0}
+            #get special values
+            for a in range(0,len(accs)):
+                print(accs[a])
+                id = accs[a]["name"]
+                self.curr.execute("SELECT {0}1, {0}2, {0}3, {0}4 FROM accessory_specials where accs_id = '{1}'".format("special", id))
+                specials = self.curr.fetchall()
+                specials = specials[0]
+                searches = ["Strength","Dexterity","Intelligence"]
+                for b in specials:
+                    if b is not None:
+                        for c in searches:
+                            if bool(re.search(c, b, re.IGNORECASE)):
+                                #find the plus symbol
+                                plus_loc = re.search("\+", b)
+                                attr = b[plus_loc.end()+1:]
+                                lvl = int(b[:plus_loc.start()])
+                                accs[a][attr] += lvl
+                print(accs[a])
+            
     
 #Connect to database
 #conn = sqlite3.connect(abspath(curdir)+"/Divinity.db")
