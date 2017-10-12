@@ -114,23 +114,52 @@ class divsqlite():
         self.curr.execute("SELECT accs_id FROM accessory_main WHERE type=\'Accessory\'")
         accs = self.curr.fetchall()
         #create temp table hold
-        accs_perms=[]
-        for a in range(0,len(accs)):
-            for b in range(a+1,len(accs)):
-                accs_perms.append([accs[a][0],accs[b][0]])
-                #print([accs[a][0],accs[b][0]]) #DEBUG LINE
+        accs_singles=[]     #individual values
+        for a in accs:
+            accs_singles.append({"name": a[0], "Strength": 0, "Dexterity": 0, "Intelligence": 0})
+        accs_perms = []     #combined values
+        #get special values
+        for a in range(0,len(accs_singles)):
+            id = accs_singles[a]["name"]
+            self.curr.execute("SELECT {0}1, {0}2, {0}3, {0}4 FROM accessory_specials where accs_id = '{1}'".format("special", id))
+            specials = self.curr.fetchall()
+            specials = specials[0]
+            searches = ["Strength","Dexterity","Intelligence"]
+            for b in specials:
+                if b is not None:
+                    for c in searches:
+                        if bool(re.search(c, b, re.IGNORECASE)):
+                            #find the plus symbol
+                            plus_loc = re.search("\+", b)
+                            attr = b[plus_loc.end()+1:]
+                            lvl = int(b[:plus_loc.start()])
+                            accs_singles[a][attr] += lvl
+            print(accs_singles[a])    #debugline
+        #make permutations
+        for a in range(0,len(accs_singles)):
+            print(accs_singles[a])
+            for b in range(a+1,len(accs_singles)):
+                #combine ids and buffs
+                combo = [accs_singles[a]["name"], accs_singles[b]["name"]]
+                new_str = accs_singles[a]["Strength"] + accs_singles[b]["Strength"]
+                new_dex = accs_singles[a]["Dexterity"] + accs_singles[b]["Dexterity"]
+                new_int = accs_singles[a]["Intelligence"] + accs_singles[b]["Intelligence"]
+                accs_perms.append({"name": combo, "Strength": new_str, "Dexterity": new_dex, "Intelligence": new_int})
+                print(accs_singles[b])
+                print(accs_perms[len(accs_perms)-1])       
         return accs_perms
     
+    #build accessory builds
     def get_boosts(self, accs_list):
-        #get specials data
-            self.curr.execute("SELECT accs_id FROM accessory_main WHERE type=\'Accessory\'")
+            #get accs_ids for all 
+            self.curr.execute("SELECT accs_id FROM accessory_main WHERE type != \"Accessory\"")
             accs = self.curr.fetchall()
             #restructure into a dictionary
             for a in range(0,len(accs)):
                 accs[a]={"name": accs[a][0], "Strength": 0, "Dexterity": 0, "Intelligence": 0}
             #get special values
             for a in range(0,len(accs)):
-                print(accs[a])
+                #print(accs[a])     #debug line
                 id = accs[a]["name"]
                 self.curr.execute("SELECT {0}1, {0}2, {0}3, {0}4 FROM accessory_specials where accs_id = '{1}'".format("special", id))
                 specials = self.curr.fetchall()
@@ -145,30 +174,34 @@ class divsqlite():
                                 attr = b[plus_loc.end()+1:]
                                 lvl = int(b[:plus_loc.start()])
                                 accs[a][attr] += lvl
-                print(accs[a])
-            
-    
-#Connect to database
-#conn = sqlite3.connect(abspath(curdir)+"/Divinity.db")
-#print(abspath(curdir)+"\\Database\\Divinity.db")
-#conn = sqlite3.connect(abspath(curdir)+"\\Database\\Divinity.db")
-#curr = conn.cursor()
-
-#number selection
-def num_select(no_choices):
-    print("Please enter only the number from the selections above: ")
-    selection_made = False
-    #loop until selection made
-    while not selection_made:
-        choice=input()
-        #check if number
-        if choice.isnumeric():
-            if int(choice) in range(1,no_choices+1):
-                print("SELECTION GOOD")
-                selection_made = True
-                return int(choice)
-                break
-        print("Invalid input. \nPlease enter only the number of your selection from the choices above.")
-        
-#test loop
+            #make type holders
+            waists = []
+            under_gars = []
+            amulets = []
+            for a in accs:
+                self.curr.execute("SELECT type FROM accessory_main WHERE accs_id = \"{0}\"".format(a["name"]))
+                item_type = self.curr.fetchall()[0][0]
+                #print(item_type)    #debug line
+                if item_type == "Amulet":
+                    amulets.append(a)
+                elif item_type == "Undergarment":
+                    under_gars.append(a)
+                elif item_type == "Waist":
+                    waists.append(a)
+            #clear accessory builds table
+            self.curr.execute("DELETE FROM accessory_builds")
+            self.curr.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=\'accessory_builds\'")
+            #make combos
+            for a in waists:
+                for b in under_gars:
+                    for c in amulets:
+                        for d in accs_list:
+                            str_val = a["Strength"] + b["Strength"] + c["Strength"] + d["Strength"]
+                            dex_val = a["Dexterity"] + b["Dexterity"] + c["Dexterity"] + d["Dexterity"]
+                            int_val = a["Intelligence"]+b["Intelligence"]+c["Intelligence"]+d["Intelligence"]
+                            insert_str = "INSERT INTO accessory_builds (waist, undergarment, amulet, accs_1, accs_2, strength, dexterity, intelligence) "
+                            insert_str += "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')".format(a["name"],b["name"],c["name"],d["name"][0],d["name"][1],str_val,dex_val,int_val)
+                            print(insert_str)   #Debug line
+                            self.curr.execute(insert_str)
+            self.conn.commit()
         
