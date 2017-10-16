@@ -1,18 +1,3 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-"""
-ZetCode PyQt5 tutorial 
-
-This program creates a quit
-button. When we press the button,
-the application terminates. 
-
-Author: Jan Bodnar
-Website: zetcode.com 
-Last edited: August 2017
-"""
-
 import sys
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QTableWidget, QTableWidgetItem, QVBoxLayout
 from PyQt5.QtCore import QCoreApplication
@@ -22,40 +7,34 @@ class Example(QWidget):
     
     def __init__(self):
         super().__init__()
+        self.div = divsqlite("Divinity.db")
         
-        self.initUI()
+    def initial(self):
+
+    def armor_table(self):
+        self.ab_table = QTableWidget()
         
+        #get row and column counts
+        self.div.curr.execute("SELECT count(*) FROM armor_builds")
+        ab_rows = int(self.curr.fetchall()[0][0])
+        ab_columns = 5  #helmet, boots, chest and gloves with armor rating
+        self.ab_table.setRowCount(ab_rows)
+        self.ab_table.setColumnCount(ab_columns)
+
+        #insert items
+        self.div.curr.execute("SELECT armor_rating, helmet, chest, gloves, boots FROM armor_builds")
+        sets = self.div.curr.fetchall()
+        for a in range(0,ab_rows):
+            for b in range(0,5):
+                if b != 0:
+                    self.div.curr.execute("SELECT name FROM armor_main WHERE armor_id = '{0}'".format(sets[a][b]))
+                    a_name = self.div.curr.fetchall()[0][0]
+                    a_name = QTableWidgetItem(a_name)
+                    self.ab_table.setItem(a,b,a_name)
+                else:
+                    a_rating = QTableWidgetItem(sets[a][b])
+
         
-    def initUI(self):               
-        #set up divinity database manager
-        div = divsqlite("Divinity.db")
-        
-        #set up table
-        self.tableWidget = QTableWidget()
-        div.curr.execute("SELECT COUNT(*) FROM armor_builds")
-        count = div.curr.fetchall()[0][0]
-        self.tableWidget.setRowCount(int(count))
-        self.tableWidget.setColumnCount(10)
-        div.curr.execute("SELECT * FROM armor_builds")
-        builds = div.curr.fetchall()
-        for a in range(0,len(builds)):
-            for b in range(1,11):
-                self.tableWidget.setItem(a,b-1,QTableWidgetItem(str(builds[a][b])))
-        self.tableWidget.move(0,0)
-        
-        """qbtn = QPushButton('Quit', self)
-        qbtn.clicked.connect(QCoreApplication.instance().quit)
-        qbtn.resize(qbtn.sizeHint())
-        qbtn.move(50, 50)"""    
-        
-        # Add box layout, add table to box layout and add box layout to widget
-        self.layout = QVBoxLayout()
-        self.layout.addWidget(self.tableWidget) 
-        self.setLayout(self.layout) 
-        
-        self.setGeometry(700, 700, 250, 150)
-        self.setWindowTitle('Table')    
-        self.show()
         
         
 if __name__ == '__main__':
