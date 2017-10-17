@@ -148,6 +148,11 @@ class divsqlite():
                 print(accs_singles[b])
                 print(accs_perms[len(accs_perms)-1])       
         return accs_perms
+
+    def armor_set_name(self):
+        #get the builds
+        self.curr.execute("SELECT * FROM armor_builds")
+        
     
     #build accessory builds
     def get_boosts(self, accs_list):
