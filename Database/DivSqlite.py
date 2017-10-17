@@ -152,6 +152,16 @@ class divsqlite():
     def armor_set_name(self):
         #get the builds
         self.curr.execute("SELECT * FROM armor_builds")
+        builds = self.curr.fetchall()
+        
+        #get sections
+        self.curr.execute("PRAGMA table_info(armor_builds)")
+        items = self.curr.fetchall()
+        
+        #go through the items
+        for a in range(1,10):
+            inner_string = "SELECT armor_builds.set_id, armor_main.name INNER JOIN WHERE armor_builds.{0} = armor_main.armor_id".format(items[a][1])
+            print(inner_string)
         
     
     #build accessory builds
