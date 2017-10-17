@@ -30,6 +30,7 @@ class armor_build_window(QWidget):
         self.initial()
 
     def initial(self):
+        self.div.armor_set_name()
         self.armor_table()
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.ab_table)
@@ -40,25 +41,19 @@ class armor_build_window(QWidget):
         self.ab_table = QTableWidget()
         
         #get row and column counts
-        self.div.curr.execute("SELECT count(*) FROM armor_builds")
+        self.div.curr.execute("SELECT count(*) FROM armor_builds_named")
         ab_rows = int(self.div.curr.fetchall()[0][0])
         ab_columns = 5  #helmet, boots, chest and gloves with armor rating
         self.ab_table.setRowCount(ab_rows)
         self.ab_table.setColumnCount(ab_columns)
 
         #insert items
-        self.div.curr.execute("SELECT armor_rating, helmet, chest, gloves, boots FROM armor_builds")
+        self.div.curr.execute("SELECT armor_rating, helmet, chest, gloves, boots FROM armor_builds_named ORDER BY armor_rating DESC")
         sets = self.div.curr.fetchall()
         for a in range(0,ab_rows):
             for b in range(0,5):
-                if b != 0:
-                    self.div.curr.execute("SELECT name FROM armor_main WHERE armor_id = '{0}'".format(sets[a][b]))
-                    a_name = self.div.curr.fetchall()[0][0]
-                    a_name = QTableWidgetItem(a_name)
-                    self.ab_table.setItem(a,b,a_name)
-                else:
-                    a_rating = QTableWidgetItem(str(sets[a][b]))
-                    self.ab_table.setItem(a,b,a_rating)
+                a_item = QTableWidgetItem(str(sets[a][b]))
+                self.ab_table.setItem(a,b,a_item)
         
 if __name__ == '__main__':
     
