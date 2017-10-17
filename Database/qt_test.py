@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QTableWidget, QTableWidgetItem, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QTableWidget, QTableWidgetItem, QVBoxLayout, QMainWindow
+#from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QCoreApplication
 from DivSqlite import divsqlite
 
@@ -14,13 +15,11 @@ class Example(QWidget):
         btn1 = QPushButton(("Armor Builds"), self)
         btn1.move(30,30)
         btn1.clicked.connect(self.open_table)
-
         self.show()
 
     def open_table(self):
-        sender = self.sender()
-        ab_s = armor_build_window()
-        ab_s.show()
+        #sender = self.sender()
+        self.ab_s = armor_build_window()
 
 
 
@@ -34,7 +33,8 @@ class armor_build_window(QWidget):
         self.armor_table()
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.ab_table)
-        #self.show()
+        self.setLayout(self.layout)
+        self.show()
 
     def armor_table(self):
         self.ab_table = QTableWidget()
