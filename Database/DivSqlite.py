@@ -5,12 +5,12 @@ import sqlite3
 import re
 
 class divsqlite():
-    
+
     def __init__(self, database):
         self.conn = sqlite3.connect(database)
         self.curr = self.conn.cursor()
         print("Database connected!")
-        
+
     #Armor builder
     def armor_building(self, character):
         #Armor lists
@@ -51,7 +51,7 @@ class divsqlite():
                 elif b[1]=="Helmets":
                     Helmets.append(b)
         self.combo_maker_plain([Helmets,Chest,Boots,Gloves])
-        
+
     #combo generator
     def combo_maker_plain(self, lists):
         items={}
@@ -85,7 +85,7 @@ class divsqlite():
                         self.curr.execute(insert_query)
                         set_id+=1
         self.conn.commit()
-    
+
     #physical weapon builder
     def weapon_build(self, weap_type, character):
         reqs_get="SELECT requirement_name FROM weapon_main WHERE type=\'%s\' GROUP BY requirement_name" % weap_type
@@ -107,7 +107,7 @@ class divsqlite():
                 print(insert_query)    #Debug line
                 self.curr.execute(insert_query)
         self.conn.commit()
-    
+
     #build permutations of accessories
     def accessory_builder(self):
         #get accessories
@@ -146,7 +146,7 @@ class divsqlite():
                 new_int = accs_singles[a]["Intelligence"] + accs_singles[b]["Intelligence"]
                 accs_perms.append({"name": combo, "Strength": new_str, "Dexterity": new_dex, "Intelligence": new_int})
                 print(accs_singles[b])
-                print(accs_perms[len(accs_perms)-1])       
+                print(accs_perms[len(accs_perms)-1])
         return accs_perms
 
     def armor_set_name(self):
@@ -160,13 +160,23 @@ class divsqlite():
 
         #go through the items
         for a in range(1,10):
-            sel_str = "SELECT {0} FROM armor_builds"
-            
+            sel_str = "SELECT {0} FROM armor_builds GROUP BY {0}".format(items[a][1])
+            self.curr.execute(sel_str)
+            items_grouped = self.curr.fetchall()
+            #go through the items
+            for b in items_grouped:
+                if b[0] == None:
+                    break
+                get_str = "SELECT name FROM armor_main WHERE armor_id = \'{0}\'".format(b[0])
+                self.curr.execute(get_str)
+                item_name = self.curr.fetchall()
+                update_str = "UPDATE armor_builds_named SET {2} = \'{0}\' WHERE {2} = \'{1}\'".format(item_name[0][0],b[0],items[a][1])
+                self.curr.execute(update_str)
         self.conn.commit()
 
     #build accessory builds
     def get_boosts(self, accs_list):
-            #get accs_ids for all 
+            #get accs_ids for all
             self.curr.execute("SELECT accs_id FROM accessory_main WHERE type != \"Accessory\"")
             accs = self.curr.fetchall()
             #restructure into a dictionary
@@ -219,4 +229,3 @@ class divsqlite():
                             print(insert_str)   #Debug line
                             self.curr.execute(insert_str)
             self.conn.commit()
-        
