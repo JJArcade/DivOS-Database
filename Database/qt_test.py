@@ -5,12 +5,12 @@ from PyQt5.QtCore import QCoreApplication
 from DivSqlite import divsqlite
 
 class Example(QWidget):
-    
+
     def __init__(self):
         super().__init__()
         #self.div = divsqlite("Divinity.db")
         self.initial()
-        
+
     def initial(self):
         btn1 = QPushButton(("Armor Builds"), self)
         btn1.move(30,30)
@@ -30,7 +30,6 @@ class armor_build_window(QWidget):
         self.initial()
 
     def initial(self):
-        self.div.armor_set_name()
         self.armor_table()
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.ab_table)
@@ -39,7 +38,7 @@ class armor_build_window(QWidget):
 
     def armor_table(self):
         self.ab_table = QTableWidget()
-        
+
         #get row and column counts
         self.div.curr.execute("SELECT count(*) FROM armor_builds_named")
         ab_rows = int(self.div.curr.fetchall()[0][0])
@@ -54,9 +53,9 @@ class armor_build_window(QWidget):
             for b in range(0,5):
                 a_item = QTableWidgetItem(str(sets[a][b]))
                 self.ab_table.setItem(a,b,a_item)
-        
+
 if __name__ == '__main__':
-    
+
     app = QApplication(sys.argv)
     ex = Example()
     sys.exit(app.exec_())

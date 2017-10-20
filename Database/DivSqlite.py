@@ -51,6 +51,7 @@ class divsqlite():
                 elif b[1]=="Helmets":
                     Helmets.append(b)
         self.combo_maker_plain([Helmets,Chest,Boots,Gloves])
+        self.armor_set_name()
 
     #combo generator
     def combo_maker_plain(self, lists):
