@@ -176,7 +176,7 @@ class divsqlite():
         self.conn.commit()
 
     #build accessory builds
-    def get_boosts(self, accs_list):
+    def get_boosts(self):
             #get accs_ids for all
             self.curr.execute("SELECT accs_id FROM accessory_main WHERE type != \"Accessory\"")
             accs = self.curr.fetchall()
@@ -230,3 +230,37 @@ class divsqlite():
                             print(insert_str)   #Debug line
                             self.curr.execute(insert_str)
             self.conn.commit()
+
+    #physical weapon builder
+    def new_weapon_build(self, weap_type, character):
+        #get the requirement name for the weapon type, typically only one required
+        reqs_get="SELECT requirement_name FROM weapon_main WHERE type=\'%s\' GROUP BY requirement_name" % weap_type
+        print(reqs_get)    #DEBUG LINE
+        self.curr.execute(reqs_get)
+        weap_reqs = self.curr.fetchall()
+        #GET CHAR equipement
+        #weapons=[]
+        self.curr.execute("DELETE FROM weapon_builds")
+        self.curr.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=\'weapon_builds\'")
+        char_lvl_get="(SELECT %s FROM attributes WHERE name=\'%s\')" % (weap_reqs[0][0], character)    #get the req level from the character
+        #build weapon sets that don't require buffs to character attributes
+        for a in weap_reqs:
+            weap_get="SELECT weapon_id, hands FROM weapon_main WHERE type=\'%s\' AND requirement_name=\'%s\' AND requirement_level<=%s" % (weap_type, a[0], char_lvl_get)
+            print(weap_get)
+            self.curr.execute(weap_get)
+            temp=self.curr.fetchall()
+            for b in temp:
+                insert_query="INSERT INTO weapon_builds (weapon) VALUES(\'%s\')" % b[0]
+                print(insert_query)    #Debug line
+                self.curr.execute(insert_query)
+        #build accessory combos for attribute buffs
+        self.get_boosts()
+        #get weapons that need boosts
+        sel_string = "SELECT weapon_id FROM weapon_main WHERE type = \"{0}\" AND requirement_level>{1}".format(weap_type,char_lvl_get)
+        self.curr.execute(sel_string)
+        buff_weaps = self.curr.fetchall()
+        for a in buff_weaps:
+            print(a)
+
+        self.conn.commit()
+
