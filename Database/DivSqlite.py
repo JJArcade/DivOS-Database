@@ -217,6 +217,8 @@ class divsqlite():
             #clear accessory builds table
             self.curr.execute("DELETE FROM accessory_builds")
             self.curr.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=\'accessory_builds\'")
+            #get accesorry permutations
+            accs_list = self.accessory_builder()
             #make combos
             for a in waists:
                 for b in under_gars:
@@ -238,6 +240,7 @@ class divsqlite():
         print(reqs_get)    #DEBUG LINE
         self.curr.execute(reqs_get)
         weap_reqs = self.curr.fetchall()
+        weap_reqs2 = weap_reqs[0][0]
         #GET CHAR equipement
         #weapons=[]
         self.curr.execute("DELETE FROM weapon_builds")
@@ -259,8 +262,13 @@ class divsqlite():
         sel_string = "SELECT weapon_id FROM weapon_main WHERE type = \"{0}\" AND requirement_level>{1}".format(weap_type,char_lvl_get)
         self.curr.execute(sel_string)
         buff_weaps = self.curr.fetchall()
+        #weapon stat containers
+        weap_deets = []
         for a in buff_weaps:
-            print(a)
+#           print(a)
+            current_weap = a[0]
+            get_deets = "SELECT requirement_name, requirement_level FROM weapon_main WHERE weapon_id = \'{0}\'".format(current_weap)
+
 
         self.conn.commit()
 
