@@ -229,7 +229,7 @@ class divsqlite():
                             int_val = a["Intelligence"]+b["Intelligence"]+c["Intelligence"]+d["Intelligence"]
                             insert_str = "INSERT INTO accessory_builds (waist, undergarment, amulet, accs_1, accs_2, strength, dexterity, intelligence) "
                             insert_str += "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')".format(a["name"],b["name"],c["name"],d["name"][0],d["name"][1],str_val,dex_val,int_val)
-                            print(insert_str)   #Debug line
+                            #print(insert_str)   #Debug line
                             self.curr.execute(insert_str)
             self.conn.commit()
 
@@ -267,7 +267,14 @@ class divsqlite():
         for a in buff_weaps:
 #           print(a)
             current_weap = a[0]
-            get_deets = "SELECT requirement_name, requirement_level FROM weapon_main WHERE weapon_id = \'{0}\'".format(current_weap)
+            get_deets = "SELECT requirement_name, requirement_level FROM weapon_main WHERE weapon_id = \'{0}\'".\
+                format(current_weap)
+            print(get_deets)
+            self.curr.execute(get_deets)
+            deets = self.curr.fetchall()
+            print(deets)
+            curr_dict = {"name":current_weap, "req_name":deets[0][0], "req_level":deets[0][1]}
+            print(curr_dict)
 
 
         self.conn.commit()
