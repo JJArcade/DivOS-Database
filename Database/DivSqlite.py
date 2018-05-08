@@ -7,9 +7,15 @@ import re
 class divsqlite():
 
     def __init__(self, database):
-        self.conn = sqlite3.connect(database)
-        self.curr = self.conn.cursor()
-        print("Database connected!")
+        failed = True
+        try:
+            self.conn = sqlite3.connect(database)
+            failed = False
+        except:
+            print("Error connecting to database")
+        if not failed:
+            self.curr = self.conn.cursor()
+            print("Database connected!")
 
     #Armor builder
     def armor_building(self, character):
@@ -265,7 +271,6 @@ class divsqlite():
         #weapon stat containers
         weap_deets = []
         for a in buff_weaps:
-#           print(a)
             current_weap = a[0]
             get_deets = "SELECT requirement_name, requirement_level FROM weapon_main WHERE weapon_id = \'{0}\'".\
                 format(current_weap)
@@ -275,7 +280,86 @@ class divsqlite():
             print(deets)
             curr_dict = {"name":current_weap, "req_name":deets[0][0], "req_level":deets[0][1]}
             print(curr_dict)
+        self.conn.commit()  #save data
 
+    #fetch data for armor table
+    def get_armors(self):
+        #GET TABLE INFO
+        self.curr.execute("PRAGMA table_info(armor_builds)")
+        rawInfo = self.curr.fetchall()
+        columnNames=[]
+        #GET COLUMN NAMES
+        for a in rawInfo:
+            columnNames.append(a[1])
+        #order should be: set_id, helmet, chest, gloves, boots, waist
+        #undergarment, amulet, accs1, accs2, armor_rating
+        #FORMAT QUERY STRING
+        queryString = ""
+        for a in columnNames[1:]:
+            if a == columnNames[len(columnNames)-1]:
+                temp = "armor_builds.{0} ".format(a)
+                queryString+=temp
+            else:
+                temp = "armor_builds.{0}, armor_builds_named.{0}, ".format(a)
+                queryString+=temp
+        queryString = "SELECT armor_builds.set_id, "+queryString
+        queryString+="FROM armor_builds INNER JOIN armor_builds_named "
+        queryString+="ON armor_builds.set_id = armor_builds_named.set_id "
+        queryString+="ORDER BY armor_builds.armor_rating DESC"
+        #print(queryString) #debugline
+        #GET JOINED DATA
+        self.curr.execute(queryString)
+        allBuilds = self.curr.fetchall()
+        #FORMAT INTO JSON/DICTIONARY
+        fTable = []
+        for a in allBuilds:
+            temp ={}
+            spots = [0,1,3,5,7,9,11,13,15,17,19]
+            for b in range(0,len(columnNames)):
+                if b!=0 and b!=10:
+                    temp[columnNames[b]]={"id":a[spots[b]],"name":a[spots[b]+1]}
+                else:
+                    temp[columnNames[b]]=a[spots[b]]
+            fTable.append(temp)
+        #print(fTable[0])                #DEBUG LINE
+        #print(fTable[len(fTable)-1])    #DEBUG LINE
+        return fTable
 
+    #equip a provided set
+    def equip(self, set, character):   #set order should be [armors],[weapons],[accessories],[shields]
+        for a in set:
+            if len(a)>0:
+                updateString = "UPDATE equipped SET %s=\"%s\""
+                for b in a:
+                    if b == a[0]:
+                        updateString = updateString %(b["type"],b["id"])
+                    elif b == a[len(a)-1]:
+                        updateString += ", %s=\"%s\" " % (b["type"],b["id"])
+                    else:
+                        updateString += ", %s=\"%s\"" % (b["type"],b["id"])
+                updateString += "WHERE Name=\"%s\"" % (character)
+                self.curr.execute(updateString)
         self.conn.commit()
 
+    #unequip everything from a character
+    def unequip_all(self, character):
+        self.curr.execute("PRAGMA table_info(equipped)")
+        rawData = self.curr.fetchall()
+        columns = []
+        for a in rawData[1:]:
+            columns.append(a[1])
+        removeString = "UPDATE equipped SET "
+        for a in columns:
+            if a != columns[len(columns)-1]:
+                removeString+="{0}={1}, ".format(a, "NULL")
+            else:
+                removeString+="{0}={1}".format(a, "NULL")
+        removeString += " WHERE Name=\"%s\"" % (character)
+        self.curr.execute(removeString)
+        self.conn.commit()
+
+
+
+
+#x = divsqlite("..\\python3_scripts\\divos\\Database\\Divinity.db")
+#x.get_armors()
