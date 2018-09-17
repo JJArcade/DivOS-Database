@@ -1,8 +1,9 @@
 import sys
 from DivSqlite import divsqlite
 import PyQt5.QtWidgets as QtWidgets
-from PyQt5.QtWidgets import (QWidget, QPushButton, QApplication,
-    QTableWidget, QTableWidgetItem, QHBoxLayout, QVBoxLayout)
+from PyQt5.QtWidgets import (QWidget, QPushButton, QApplication, QTabWidget,
+    QTableWidget, QTableWidgetItem, QHBoxLayout, QVBoxLayout, QTextEdit)
+from PyQt5.QtWidgets import QPlainTextDocumentLayout as QTextDocument
 from PyQt5.QtCore import pyqtSlot
 
 
@@ -21,6 +22,22 @@ class Example(QWidget):
         qbtn.resize(qbtn.sizeHint())
         qbtn.move(50, 50)
 
+        #Make a tab
+        self.tabs = QTabWidget()
+        #self.tab1 = QTextEdit()
+        #self.tab2 = QTextEdit()
+        self.tab1 = QTextDocument("")
+        self.tab2 = QTextDocument("")
+        #self.tab1.setReadOnly(True)
+        #self.tab2.setReadOnly(True)
+        self.tab1.setDefaultStyleSheet("<style> body {background: blue; font-family: \"Comic Sans MS\";} div {background: grey; border-style: solid; border-width: 5px; padding: 5px; border-color: black;}</style>")
+        self.tab1.setHtml(self.char_sheet_read())
+        self.tab2.setHtml(self.char_sheet_read())
+        #self.tab1.setText(self.char_sheet_read())
+        #self.tab2.setText(self.char_sheet_read())
+        self.tabs.addTab(self.tab1,"Tab 1")
+        self.tabs.addTab(self.tab2,"Tab 2")
+
         #show extra window button
         sbtn = QPushButton('Show Armors', self)
         sbtn.clicked.connect(lambda: self.on_click())
@@ -29,6 +46,7 @@ class Example(QWidget):
         #wrangle buttons
         vBox = QVBoxLayout()
         vBox.addStretch(1)
+        vBox.addWidget(self.tabs)
         vBox.addWidget(qbtn)
         vBox.addWidget(sbtn)
         self.setLayout(vBox)
@@ -42,6 +60,14 @@ class Example(QWidget):
         #set up second Window
         self._2nd = tableView()
         self._2nd.show()
+
+    def char_sheet_read(self):
+        file = open("sample_char_sheet.html", "r")
+        text = ""
+        for a in file.readlines():
+            text+=a
+        print(text)
+        return text
 
 class tableView(QWidget):
     def __init__(self):
